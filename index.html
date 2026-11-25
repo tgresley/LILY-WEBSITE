@@ -1,0 +1,187 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lily Hogan Portfolio</title>
+
+    <style>
+
+        @font-face {
+            font-family: Charm;
+            src: url(./typefaces/Charm-Regular.ttf);
+        }
+
+        @font-face {
+            font-family: officecode;
+            src: url(./typefaces/officecodeprod-light.otf);
+        }
+
+        body {
+            background-color: white;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: url(./cursors/blueheart.cur), auto;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            gap: 8px;
+        }
+
+        h1 {
+            margin: 0;
+            font-family: officecode;
+            font-size: 16px;
+            color: #000000;
+            font-weight: normal;
+        }
+
+        h2 {
+            margin: 0;
+            font-family: officecode;
+            font-size: 16px;
+            color: #000000;
+            font-weight: normal;
+        }
+
+        a {
+            font-family: officecode;
+            font-size: 16px;
+            color: #000000;
+            text-decoration: none;
+            font-weight: normal;
+             cursor: url(./cursors/heart.cur), auto;
+        }
+
+        a:hover {
+            color: #ff00e1;
+            font-weight: 900;
+        }
+
+        /* IMAGE */
+
+        #changing-image {
+            height: 150px;
+            width: auto;
+            display: block;
+            object-fit: contain;
+            opacity: 1;
+            transition: opacity 0.15s ease;
+        }
+
+        #changing-image.fading {
+            opacity: 0;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Lily Hogan</h1>
+
+
+        <img id="changing-image" src="./hpi/12.png" alt="Lily Hogan">
+
+        <a href="./site/homepage.html">[enter]</a>
+
+    </div>
+
+
+    <script>
+
+        // ADD YOUR IMAGES HERE
+
+        const images = [
+            "./hpi/12.png",
+            "./hpi/13.png",
+            "./hpi/14.png",
+            "./hpi/15.png",
+            "./hpi/16.png",
+            "./hpi/17.png",
+            "./hpi/18.png",
+            "./hpi/19.png",
+            "./hpi/110.png",
+            "./hpi/111.png",
+            "./hpi/112.png",
+            "./hpi/113.png",
+            "./hpi/114.png",
+            "./hpi/115.png"
+        ];
+
+
+        // IMAGE SETTINGS
+
+        const image = document.getElementById("changing-image");
+
+        let currentImage = 0;
+
+        let lastX = null;
+        let lastY = null;
+
+        // HIGHER NUMBER = LESS SENSITIVE
+        const movementThreshold = 80;
+
+        // FADE SPEED
+        const fadeSpeed = 0;
+
+
+        // PRELOAD IMAGES
+
+        images.forEach(src => {
+            const preload = new Image();
+            preload.src = src;
+        });
+
+
+        // CHANGE IMAGE ON MOUSE MOVEMENT
+
+        document.addEventListener("mousemove", function(event) {
+
+            if (lastX === null) {
+                lastX = event.clientX;
+                lastY = event.clientY;
+                return;
+            }
+
+            const distance = Math.hypot(
+                event.clientX - lastX,
+                event.clientY - lastY
+            );
+
+            if (distance >= movementThreshold) {
+
+                currentImage = (currentImage + 1) % images.length;
+
+                image.classList.add("fading");
+
+                setTimeout(function() {
+
+                    image.src = images[currentImage];
+
+                    image.classList.remove("fading");
+
+                }, fadeSpeed);
+
+                lastX = event.clientX;
+                lastY = event.clientY;
+
+            }
+
+        });
+
+    </script>
+
+</body>
+</html>

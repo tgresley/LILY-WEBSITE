@@ -1,0 +1,1862 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Lily Hogan — Beating a Dead Horse</title>
+
+    <style>
+
+        /* FONTS */
+
+        @font-face {
+            font-family: officecode;
+            src: url("/typefaces/officecodeprod-light.otf");
+        }
+
+        @font-face {
+            font-family: ocbold;
+            src: url("/typefaces/officecodepro-regular.otf");
+        }
+
+        @font-face {
+            font-family: inter;
+            src: url("/typefaces/inter.ttf") format("truetype");
+        }
+
+
+        /* GENERAL */
+
+        body {
+            background-color: white;
+            margin: 0;
+            min-height: 100vh;
+
+            cursor: url(/cursors/starblack.cur), auto;
+        }
+
+
+        /* HEADER */
+
+        .header {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            justify-content: space-between;
+
+            width: 100%;
+            padding: 8px;
+
+            box-sizing: border-box;
+        }
+
+        h1 {
+            font-family: officecode;
+            font-size: 16px;
+            font-weight: normal;
+            color: black;
+
+            margin: 0;
+        }
+
+
+        /* NAMEMARK VERTICAL COLUMN */
+
+        .namemark-container {
+            position: relative;
+
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+
+            --gallery-width: 55vw;
+
+            width: var(--gallery-width);
+        }
+
+
+        /* ================================= */
+        /* NAME AND CONTACT ROW */
+        /* ================================= */
+
+        .name-contact-row {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: flex-start;
+
+            width: 100%;
+        }
+
+
+        /* NAMEMARK */
+
+        .namemark h1 {
+            font-family: ocbold;
+            font-size: 16px;
+            color: black;
+
+            margin: 0;
+
+            cursor: url(/cursors/blueheart.cur), auto;
+        }
+
+
+        /* NAME HOVER */
+
+        .namemark:hover h1 {
+            color: #ff00e1;
+        }
+
+
+        /* ================================= */
+        /* NAME HOVER SUBHEADINGS */
+        /* ================================= */
+
+        .namemark-subheadings {
+            display: none;
+            position: fixed;
+
+            bottom: 8px;
+            left: 8px;
+
+            flex-direction: row;
+            gap: 16px;
+
+            font-size: 16px;
+            color: #ff00e1;
+
+            white-space: nowrap;
+            pointer-events: none;
+
+            z-index: 200;
+        }
+
+        .namemark-subheadings h1 {
+            margin: 0;
+
+            font-family: ocbold;
+            color: #ff00e1;
+        }
+
+        .namemark:hover + .namemark-subheadings {
+            display: flex;
+        }
+
+
+        /* ================================= */
+        /* NAVIGATION ROW */
+        /* ================================= */
+
+        .navigation-row {
+            position: relative;
+
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: flex-start;
+
+            width: var(--gallery-width);
+
+            margin-top: 8px;
+        }
+
+
+        /* CV AND WORKS CONTAINERS */
+
+        .cv-container,
+        .works-container {
+            position: static;
+
+            margin: 0;
+        }
+
+
+        /* ================================= */
+        /* WORKS BUTTON */
+        /* ================================= */
+
+        .works-heading {
+            width: fit-content;
+
+            cursor: url(/cursors/heart.cur), auto;
+        }
+
+        .works-heading h1 {
+            color: #000000;
+            font-weight: normal;
+
+            text-decoration: underline;
+            text-decoration-color: #ff00e1;
+            text-decoration-thickness: 1px;
+        }
+
+        .works-heading:hover h1 {
+            color: #ff00e1;
+        }
+
+
+        /* ================================= */
+        /* CV BUTTON */
+        /* ================================= */
+
+        .cv-heading {
+            cursor: url(/cursors/starblack.cur), auto;
+
+            transition: color 0.2s ease;
+
+            width: fit-content;
+        }
+
+        .cv-heading:hover h1 {
+            cursor: url(/cursors/starblack.cur), auto;
+
+            color: #ff00e1;
+
+            text-decoration: underline;
+            text-decoration-color: #ff00e1;
+            text-decoration-thickness: 1px;
+        }
+
+        .cv-heading.active h1 {
+            cursor: url(/cursors/starblack.cur), auto;
+
+            text-decoration: underline;
+            text-decoration-color: #ff00e1;
+            text-decoration-thickness: 1px;
+        }
+
+
+        /* ================================= */
+        /* CV CONTENT POSITION */
+        /* ================================= */
+
+        .cv {
+            display: none;
+            position: absolute;
+
+            top: 0;
+            left: calc(100% + 16px);
+
+            width: 30vw;
+
+            font-family: officecode;
+            color: black;
+
+            z-index: 100;
+        }
+
+
+        /* SHOW CV ON HOVER OR CLICK */
+
+        .navigation-row:has(.cv-heading:hover) .cv,
+        .navigation-row.cv-open .cv {
+            display: block;
+        }
+
+
+        /* HIDE WORKS MENU WHEN CV IS VISIBLE */
+
+        .navigation-row:has(.cv-heading:hover) .works-subheadings,
+        .navigation-row.cv-open .works-subheadings {
+            display: none;
+        }
+
+
+        /* REMOVE WORKS UNDERLINE WHEN CV IS VISIBLE */
+
+        .navigation-row:has(.cv-heading:hover) .works-heading h1,
+        .navigation-row.cv-open .works-heading h1 {
+            text-decoration: none;
+        }
+
+
+        /* ================================= */
+        /* WORKS MENU POSITION */
+        /* ================================= */
+
+        .works-subheadings {
+            position: absolute;
+
+            top: 0;
+            left: calc(100% + 16px);
+
+            width: 40vw;
+
+            display: flex;
+            flex-direction: column;
+
+            gap: 8px;
+
+            font-family: officecode;
+            font-size: 16px;
+            font-weight: normal;
+            color: black;
+
+            white-space: normal;
+
+            z-index: 100;
+        }
+
+
+        /* ================================= */
+        /* SHARED CV AND WORKS FORMATTING */
+        /* ================================= */
+
+        .works-menu-content,
+        .cv-menu-content {
+            display: flex;
+            flex-direction: column;
+
+            gap: 0px;
+        }
+
+        .works-group,
+        .cv-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+
+        /* ================================= */
+        /* SHARED SUBHEADING STYLING */
+        /* ================================= */
+
+        .works-subheadings h1,
+        .cv h2 {
+            font-family: officecode;
+            font-size: 16px;
+            font-weight: normal;
+            font-style: normal;
+            color: black;
+
+            margin: 0;
+            padding: 0 0 8px 0;
+
+            text-decoration: underline;
+            text-decoration-color: blue;
+            text-decoration-thickness: 1px;
+        }
+
+
+        /* ================================= */
+        /* SHARED SUB-SUBHEADING CONTAINERS */
+        /* ================================= */
+
+        .works-sub-subheadings,
+        .cv-sub-subheadings {
+            display: flex;
+            flex-direction: column;
+
+            gap: 6px;
+
+            padding: 0 0 12px 0;
+        }
+
+
+        /* WORKS SUB-SUBHEADING STYLING */
+
+        .works-sub-subheadings h2 {
+            font-family: officecode;
+            font-size: 14px;
+            font-weight: 100;
+            font-style: italic;
+            color: black;
+
+            line-height: 1;
+
+            margin: 0;
+        }
+
+
+        /* CV SUB-SUBHEADING STYLING */
+
+        .cv-sub-subheadings p {
+            font-family: officecode;
+            font-size: 12px;
+            font-weight: 100;
+            color: black;
+
+            line-height: 1.25;
+
+            margin: 0;
+        }
+
+
+        /* WORKS CURSOR */
+
+        .works-sub-subheadings h2 {
+            cursor: url(/cursors/heart.cur), auto;
+        }
+
+        .works-sub-subheadings a {
+            text-decoration: none;
+            color: #000000;
+        }
+
+
+        /* SUB-SUBHEADING HOVER */
+
+        .works-sub-subheadings a:hover {
+            color: #ff00e1;
+        }
+
+
+        /* CURRENTLY SELECTED WORK */
+
+        .works-sub-subheadings h2.active {
+            text-decoration: underline;
+            text-decoration-color: #ff00e1;
+        }
+
+
+        /* ================================= */
+        /* CV DOWNLOAD LINK */
+        /* ================================= */
+
+        .cv a {
+            color: black;
+            text-decoration: none;
+
+            cursor: url(/cursors/heart.cur), auto;
+        }
+
+        .cv a:hover {
+            color: #ff00e1;
+        }
+
+        .cv-download {
+            display: inline-block;
+
+            font-family: officecode;
+            font-size: 16px;
+            font-weight: 100;
+
+            margin-top: 0px;
+        }
+
+
+        /* ================================= */
+        /* WORKS MENU TOGGLE BUTTONS */
+        /* ================================= */
+
+        .works-toggle {
+            background: none;
+            border: none;
+
+            font-family: officecode;
+            font-size: 16px;
+            font-weight: normal;
+            line-height: normal;
+            color: black;
+
+            margin: 0;
+            padding: 0;
+
+            width: fit-content;
+
+            text-align: right;
+
+            cursor: url(/cursors/heart.cur), auto;
+        }
+
+        .works-toggle:hover {
+            color: #ff00e1;
+        }
+
+
+        /* EXPAND BUTTON */
+
+        .works-expand {
+            display: none;
+        }
+
+
+        /* COLLAPSE BUTTON */
+
+        .works-collapse {
+            align-self: flex-start;
+
+            margin-top: 4px;
+        }
+
+
+        /* COLLAPSED WORKS MENU */
+
+        .works-subheadings.collapsed .works-menu-content {
+            display: none;
+        }
+
+        .works-subheadings.collapsed .works-expand {
+            display: block;
+        }
+
+
+        /* ================================= */
+        /* PROJECT GALLERY */
+        /* ================================= */
+
+        .project-gallery {
+            display: flex;
+            flex-direction: column;
+
+            position: relative;
+
+            width: var(--gallery-width);
+
+            margin-top: 8px;
+            margin-left: 0;
+
+            gap: 8px;
+        }
+
+
+        /* ================================= */
+        /* PROJECT WRITING — PAPER CONTAINER */
+        /* ================================= */
+
+        .project-writing {
+
+            /* PAGE WIDTH AND HEIGHT */
+
+          width: calc(100% - 16px);
+margin: 0 8px;
+            min-height: 75vh;
+
+            /* PAPER COLOUR */
+
+            background-color: white;
+
+            /* INTERNAL PAGE MARGINS */
+
+             padding: 100px 12%;
+
+            /* TEXT FORMATTING */
+
+            font-family: "Times New Roman", Times, serif;
+            font-size: 16px;
+            font-weight: normal;
+
+            color: black;
+
+            line-height: 1.4;
+            text-align: left;
+
+            box-sizing: border-box;
+
+            overflow-wrap: break-word;
+
+            /* SAME DROP SHADOW AS IMAGES */
+
+         box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
+
+        }
+
+
+        /* WRITING TITLE */
+
+        .project-writing h2 {
+            font-family: inherit;
+            font-size: 18px;
+            font-weight: normal;
+            font-style: italic;
+
+            margin: 0 0 24px 0;
+        }
+
+
+        /* WRITING SUBHEADINGS */
+
+        .project-writing h3 {
+            font-family: inherit;
+            font-size: 16px;
+            font-weight: normal;
+
+            margin: 24px 0 8px 0;
+        }
+
+
+        /* WRITING PARAGRAPHS */
+
+        .project-writing p {
+            margin: 0 0 16px 0;
+        }
+
+
+        /* REMOVE EXTRA SPACE AFTER LAST PARAGRAPH */
+
+        .project-writing p:last-child {
+            margin-bottom: 0;
+        }
+
+
+        /* WRITING LINKS */
+
+        .project-writing a {
+            color: black;
+
+            text-decoration: underline;
+            text-decoration-color: blue;
+            text-decoration-thickness: 1px;
+
+            cursor: url(/cursors/heart.cur), auto;
+        }
+
+        .project-writing a:hover {
+            color: #ff00e1;
+        }
+
+
+        /* QUOTATIONS */
+
+        .project-writing blockquote {
+            margin: 16px 32px;
+
+            font-style: italic;
+        }
+
+
+        /* ================================= */
+        /* CONTACT POSITION */
+        /* ================================= */
+
+        .contact-container {
+            position: relative;
+
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+
+            text-align: right;
+        }
+
+
+        /* CONTACT BUTTON */
+
+        .contact-heading {
+            cursor: url(/cursors/heart.cur), auto;
+        }
+
+        .contact-heading:hover h1 {
+            color: #ff00e1;
+
+            cursor: url(/cursors/heart.cur), auto;
+        }
+
+        .contact-heading.active h1 {
+            text-decoration: underline;
+            text-decoration-color: #ff00e1;
+
+            cursor: url(/cursors/heart.cur), auto;
+        }
+
+
+        /* ================================= */
+        /* CONTACT LINKS PANEL */
+        /* ================================= */
+
+        .contact-panel {
+            display: none;
+            position: fixed;
+
+            bottom: 8px;
+            left: 8px;
+
+            width: var(--gallery-width);
+
+            flex-direction: row;
+            justify-content: flex-end;
+            align-items: center;
+
+            gap: 16px;
+
+            font-family: officecode;
+            font-size: 16px;
+
+            white-space: nowrap;
+
+            z-index: 200;
+        }
+
+        .contact-panel.active {
+            display: flex;
+        }
+
+
+        /* CONTACT LINK STYLING */
+
+        .contact-panel a {
+            color: black;
+            text-decoration: none;
+
+            cursor: url(/cursors/heart.cur), auto;
+        }
+
+        .contact-panel a:hover {
+            text-decoration: underline;
+            text-decoration-color: blue;
+            text-decoration-thickness: 1px;
+
+            cursor: url(/cursors/heart.cur), auto;
+        }
+
+
+
+        /* ================================= */
+        /* MOBILE / PHONE LAYOUT */
+        /* ================================= */
+
+        @media screen and (max-width: 768px) {
+
+
+            /* GENERAL */
+
+            body {
+                cursor: auto;
+            }
+
+
+            /* HEADER */
+
+            .header {
+                width: 100%;
+                padding: 8px;
+            }
+
+
+            /* MAIN MOBILE GRID */
+
+            .namemark-container {
+                --gallery-width: calc(100vw - 16px);
+
+                position: relative;
+
+                width: var(--gallery-width);
+
+                display: grid;
+                grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+
+                align-items: start;
+                row-gap: 8px;
+
+                padding-bottom: 65px;
+            }
+
+
+            /* SEPARATE HEADER ELEMENTS */
+
+            .name-contact-row,
+            .navigation-row {
+                display: contents;
+            }
+
+
+            /* NAMEMARK — TOP LEFT */
+
+            .namemark {
+                grid-column: 1;
+                grid-row: 1;
+
+                justify-self: start;
+            }
+
+            .namemark h1 {
+                font-family: ocbold;
+                font-size: 16px;
+                font-weight: normal;
+
+                color: black;
+
+                cursor: auto;
+            }
+
+            .namemark:hover h1,
+            .namemark:active h1 {
+                color: black;
+            }
+
+
+            /* CONTACT BUTTON — TOP RIGHT */
+
+            .contact-container {
+                grid-column: 2;
+                grid-row: 1;
+
+                justify-self: end;
+
+                position: relative;
+            }
+
+
+            /* WORKS BUTTON — SECOND ROW LEFT */
+
+            .works-container {
+                grid-column: 1;
+                grid-row: 2;
+
+                justify-self: start;
+
+                padding-right: 32px;
+            }
+
+
+            /* CV BUTTON — SECOND ROW RIGHT */
+
+            .cv-container {
+                grid-column: 2;
+                grid-row: 2;
+
+                justify-self: end;
+            }
+
+
+            /* WORKS AND CV CONTENT */
+
+            .works-subheadings,
+            .cv {
+                position: static;
+
+                grid-column: 1 / -1;
+                grid-row: 3;
+
+                width: 100%;
+
+                margin: 0;
+                padding: 0;
+
+                box-sizing: border-box;
+            }
+
+
+            /* WORKS MENU */
+
+            .works-subheadings {
+                display: flex;
+                flex-direction: column;
+
+                gap: 8px;
+            }
+
+            .works-menu-content {
+                display: flex;
+                flex-direction: column;
+            }
+
+
+            /* WORKS HEADINGS */
+
+            .works-subheadings h1 {
+                font-size: 16px;
+                text-align: left;
+            }
+
+
+            /* WORKS TITLES */
+
+            .works-sub-subheadings h2 {
+                font-size: 14px;
+                line-height: 1.2;
+
+                text-align: left;
+            }
+
+
+            /* WORKS EXPAND AND COLLAPSE BUTTONS */
+
+            .works-toggle {
+                font-size: 16px;
+            }
+
+            .works-expand,
+            .works-collapse {
+                position: absolute;
+
+                grid-column: 1;
+                grid-row: 2;
+
+                top: 0;
+                left: 80px;
+                right: auto;
+
+                margin: 0;
+                padding: 0;
+
+                width: fit-content;
+            }
+
+
+            /* COLLAPSED WORKS MENU */
+
+            .works-subheadings.collapsed {
+                display: contents;
+            }
+
+            .works-subheadings.collapsed .works-menu-content {
+                display: none;
+            }
+
+            .works-subheadings.collapsed .works-expand {
+                display: block;
+            }
+
+
+            /* CV STYLING */
+
+            .cv h2 {
+                font-size: 16px;
+                text-align: right;
+            }
+
+            .cv-sub-subheadings p {
+                font-size: 12px;
+                line-height: 1.3;
+
+                text-align: right;
+            }
+
+            .cv-download {
+                align-self: flex-end;
+                text-align: right;
+            }
+
+
+            /* ================================= */
+            /* FULL WIDTH PROJECT GALLERY */
+            /* ================================= */
+
+        .project-gallery {
+    grid-column: 1 / -1;
+    grid-row: 3;
+
+    width: 100vw;
+
+    margin-top: 0;
+    margin-left: -8px;
+
+    gap: 8px;
+}
+
+
+            /* ================================= */
+            /* MOBILE WRITING PAGE */
+            /* ================================= */
+
+      .project-writing {
+    width: calc(100% - 16px);
+    margin: 0 8px;
+
+    min-height: 65vh;
+
+    background-color: white;
+
+    padding: 32px 32px;
+
+    font-family: "Times New Roman", Times, serif;
+    font-size: 16px;
+    line-height: 1.4;
+
+    box-sizing: border-box;
+
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
+}
+        
+
+
+            /* MOBILE WRITING TITLE */
+
+            .project-writing h2 {
+                font-size: 18px;
+            }
+
+
+            /* MOBILE WRITING PARAGRAPHS */
+
+            .project-writing p {
+                margin-bottom: 16px;
+            }
+
+            .project-writing p:last-child {
+                margin-bottom: 0;
+            }
+
+
+            /* MOBILE QUOTATIONS */
+
+            .project-writing blockquote {
+                margin: 16px;
+            }
+
+
+            /* PERMANENT ARTIST INFORMATION */
+
+            .namemark-subheadings {
+                display: flex;
+                position: fixed;
+
+                bottom: 8px;
+                left: 8px;
+                right: auto;
+
+                flex-direction: row;
+                justify-content: flex-start;
+                align-items: center;
+
+                gap: 8px;
+
+                white-space: nowrap;
+
+                z-index: 200;
+            }
+
+            .namemark-subheadings h1 {
+                font-family: ocbold;
+                font-size: 16px;
+                font-weight: normal;
+
+                color: #ff00e1;
+
+                line-height: 1.2;
+                margin: 0;
+            }
+
+
+            /* CONTACT LINKS — BOTTOM RIGHT */
+
+            .contact-panel {
+                position: fixed;
+
+                bottom: 8px;
+                right: 8px;
+                left: auto;
+
+                width: auto;
+
+                flex-direction: column;
+                justify-content: flex-end;
+                align-items: flex-end;
+
+                gap: 4px;
+
+                padding: 0;
+
+                font-family: officecode;
+                font-size: 16px;
+
+                background-color: transparent;
+
+                z-index: 200;
+            }
+
+            .contact-panel.active {
+                display: flex;
+            }
+
+
+            /* CV AND WORKS VISIBILITY */
+
+            .navigation-row:not(.cv-open) .cv {
+                display: none;
+            }
+
+            .navigation-row:not(.cv-open)
+            .works-subheadings:not(.collapsed) {
+                display: flex;
+            }
+
+            .navigation-row:not(.cv-open)
+            .works-subheadings.collapsed {
+                display: contents;
+            }
+
+            .navigation-row.cv-open .cv {
+                display: block;
+            }
+
+            .navigation-row.cv-open .works-subheadings {
+                display: none;
+            }
+
+
+            /* REPLACE WRITING WITH CV OR WORKS */
+
+            .namemark-container:has(
+                .navigation-row.cv-open
+            ) .project-gallery {
+                display: none;
+            }
+
+            .namemark-container:has(
+                .navigation-row:not(.cv-open)
+                .works-subheadings:not(.collapsed)
+            ) .project-gallery {
+                display: none;
+            }
+
+
+            /* MOBILE ACTIVE BUTTON STYLING */
+
+            .navigation-row:not(.cv-open) .works-heading h1 {
+                text-decoration: underline;
+                text-decoration-color: #ff00e1;
+                text-decoration-thickness: 1px;
+            }
+
+            .navigation-row.cv-open .works-heading h1 {
+                text-decoration: none;
+            }
+
+        }
+
+
+        /* ================================= */
+        /* TOUCHSCREEN NAVIGATION */
+        /* ================================= */
+
+        @media (hover: none) {
+
+            .navigation-row:not(.cv-open):has(.cv-heading:hover) .cv {
+                display: none;
+            }
+
+            .navigation-row:not(.cv-open):has(.cv-heading:hover)
+            .works-subheadings:not(.collapsed) {
+                display: flex;
+            }
+
+            .navigation-row:not(.cv-open):has(.cv-heading:hover)
+            .works-subheadings.collapsed {
+                display: contents;
+            }
+
+            .navigation-row:not(.cv-open):has(.cv-heading:hover)
+            .works-heading h1 {
+                text-decoration: underline;
+                text-decoration-color: #ff00e1;
+                text-decoration-thickness: 1px;
+            }
+
+            .navigation-row.cv-open .cv {
+                display: block;
+            }
+
+            .navigation-row.cv-open .works-subheadings {
+                display: none;
+            }
+
+            .navigation-row.cv-open .works-heading h1 {
+                text-decoration: none;
+            }
+
+        }
+
+
+        /* ================================= */
+        /* EXTRA SMALL PHONE SCREENS */
+        /* ================================= */
+
+        @media screen and (max-width: 380px) {
+
+            .namemark-subheadings {
+                gap: 8px;
+            }
+
+            .project-writing {
+                padding: 24px 24px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+
+        <!-- NAMEMARK VERTICAL COLUMN -->
+
+        <div class="namemark-container">
+
+
+            <!-- ================================= -->
+            <!-- NAME AND CONTACT ROW -->
+            <!-- ================================= -->
+
+            <div class="name-contact-row">
+
+
+                <!-- NAME -->
+
+                <div class="namemark">
+
+                    <h1>Lily Hogan</h1>
+
+                </div>
+
+
+                <!-- NAME HOVER SUBHEADINGS -->
+
+                <div class="namemark-subheadings">
+
+                    <h1>Artist</h1>
+                    <h1>Naarm/Melbourne</h1>
+
+                </div>
+
+
+                <!-- CONTACT BUTTON -->
+
+                <div class="contact-container">
+
+                    <div class="contact-heading" onclick="toggleContact()">
+
+                        <h1>[contact]</h1>
+
+                    </div>
+
+
+                    <!-- CONTACT LINKS -->
+
+                    <div class="contact-panel" id="contactPanel">
+
+                        <a href="mailto:lmhogan12@gmail.com">
+
+                            [email]
+
+                        </a>
+
+                        <a
+                            href="https://www.instagram.com/l1lyhogan/?hl=en"
+                            target="_blank">
+
+                            [instagram]
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================================= -->
+            <!-- NAVIGATION ROW -->
+            <!-- ================================= -->
+
+            <div class="navigation-row">
+
+
+                <!-- CV BUTTON -->
+
+                <div class="cv-container">
+
+                    <div class="cv-heading" onclick="toggleCV()">
+
+                        <h1>[cv]</h1>
+
+                    </div>
+
+                </div>
+
+
+                <!-- WORKS BUTTON -->
+
+                <div class="works-container">
+
+                    <div class="works-heading" onclick="showWorks()">
+
+                        <h1>[works]</h1>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================================= -->
+                <!-- CV TEXT -->
+                <!-- ================================= -->
+
+                <div class="cv" id="CvText">
+
+                    <div class="cv-menu-content">
+
+
+                        <!-- EDUCATION -->
+
+                        <div class="cv-group">
+
+                            <h2>Education</h2>
+
+                            <div class="cv-sub-subheadings">
+
+                                <p>
+                                    Bachelor of Fine Arts (Photography),
+                                    attained 2024,
+                                    Victorian College of the Arts
+                                </p>
+
+                                <p>
+                                    Bachelor of Fine Arts (Honours),
+                                    attained 2026,
+                                    Victorian College of the Arts
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- SELECT GROUP EXHIBITIONS -->
+
+                        <div class="cv-group">
+
+                            <h2>Select Group Exhibitions</h2>
+
+                            <div class="cv-sub-subheadings">
+
+                                <p>
+                                    <i>Develop</i> 2024, 2025,
+                                    Museum of Australian Photography (MAPh),
+                                    Melbourne
+                                </p>
+
+                                <p>
+                                    <i>Neighbours</i>, 2025,
+                                    138 Window Space, Melbourne
+                                </p>
+
+                                <p>
+                                    <i>Agnes Martin: I Love The Whole World</i>,
+                                    2025, 138 Shop Gallery, Melbourne
+                                </p>
+
+                                <p>
+                                    <i>Semiotic Soup</i>, 2026,
+                                    All The Very Best, Melbourne
+                                </p>
+
+                                <p>
+                                    <i>Halifax Gibbet</i>, 2026,
+                                    Secret Chamber, Melbourne
+                                </p>
+
+                                <p>
+                                    <i>Beating a Dead Horse</i>, 2026,
+                                    All The Very Best, Melbourne
+                                </p>
+
+                                <p>
+                                    Victorian College of the Arts Graduate Show,
+                                    2024, Victorian College of the Arts,
+                                    Melbourne
+                                </p>
+
+                                <p>
+                                    <i>Who Are These People</i>, 2026,
+                                    Queensland College of Art and Design,
+                                    Brisbane
+                                </p>
+
+                                <p>
+                                    Victorian College of the Arts Graduate Show,
+                                    2026, Victorian College of the Arts,
+                                    Melbourne
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- UPCOMING -->
+
+                        <div class="cv-group">
+
+                            <h2>Upcoming</h2>
+
+                            <div class="cv-sub-subheadings">
+
+                                <p>
+                                    Show with Tove Gomes-McConnell,
+                                    2027, Kings ARI, Melbourne
+                                </p>
+
+                                <p>
+                                    Show with Freja Kvist Innes-Kerr
+                                    and Sophia Jacoby,
+                                    2027, George Paton Gallery, Melbourne
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- SCHOLARSHIPS / PRIZES / AWARDS -->
+
+                        <div class="cv-group">
+
+                            <h2>Scholarships/Prizes/Awards</h2>
+
+                            <div class="cv-sub-subheadings">
+
+                                <p>
+                                    Melbourne National Merit Scholarship,
+                                    awarded 2022
+                                </p>
+
+                                <p>
+                                    Stuart Black Memorial Scholarship,
+                                    awarded 2024
+                                </p>
+
+                                <p>
+                                    Finalist, University of Melbourne
+                                    Student Union Art Prize,
+                                    2024, George Paton Gallery, Melbourne
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- DOWNLOAD CV -->
+
+                        <a
+                            href="/documents/LilyHoganArtistCV2026.pdf"
+                            download
+                            class="cv-download">
+
+                            [download cv]
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================================= -->
+                <!-- WORKS MENU -->
+                <!-- ================================= -->
+
+                <div class="works-subheadings" id="worksSubheadings">
+
+
+                    <!-- EXPAND BUTTON -->
+
+                    <button
+                        class="works-toggle works-expand"
+                        id="worksExpand"
+                        onclick="toggleWorks()"
+                        aria-label="Expand works menu"
+                        aria-controls="worksMenuContent"
+                        aria-expanded="true">
+
+                        [+]
+
+                    </button>
+
+
+                    <!-- WORKS MENU CONTENT -->
+
+                    <div class="works-menu-content" id="worksMenuContent">
+
+
+                        <!-- 2026 -->
+
+                        <div class="works-group">
+
+                            <h1 class="works-subheading">
+                                2026
+                            </h1>
+
+                            <div class="works-sub-subheadings">
+
+                                <h2>
+                                    <a href="../26.6.silvering/silvering.html">
+                                        Silvering
+                                    </a>
+                                </h2>
+
+                                <h2>
+                                    <a href="../26.5.sub/sub.html">
+                                        Sub #1
+                                    </a>
+                                </h2>
+
+                                <h2>
+                                    <a href="../26.1.blinders/blinders.html">
+                                        Blinders
+                                    </a>
+                                </h2>
+
+                                <h2>
+                                    <a href="../26.2.Blowup/blowup.html">
+                                        <i>Blow up #1 &amp; #2</i>
+                                    </a>
+                                </h2>
+
+                                <h2>
+                                    <a href="../26.3.box/box.html">
+                                        <i>Box (Ding)</i>
+                                    </a>
+                                </h2>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- 2025 -->
+
+                        <div class="works-group">
+
+                            <h1 class="works-subheading">
+                                2025
+                            </h1>
+
+                            <div class="works-sub-subheadings">
+
+                                <h2>
+                                    <a href="../25.1.houseshow/hs.html">
+                                        House Show
+                                    </a>
+                                </h2>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- 2024 -->
+
+                        <div class="works-group">
+
+                            <h1 class="works-subheading">
+                                2024
+                            </h1>
+
+                            <div class="works-sub-subheadings">
+
+                                <h2>
+                                    <a href="../24.1.advicetoyounggirls/girls.html">
+                                        advice to young girls
+                                    </a>
+                                </h2>
+
+                                <h2>
+                                    <a href="../24.2.iwanttobenaked/naked.html">
+                                        I want to be naked (i dont mean my body)
+                                    </a>
+                                </h2>
+
+                                <h2>
+                                    <a href="../24.3.north78/north78.html">
+                                        North 1978 and Untitled (Echo)
+                                    </a>
+                                </h2>
+
+                                <h2>
+                                    <a href="../24.4.revolution/revolution.html">
+                                        WOULD YOU KILL ME IN THE COMMUNIST REVOLUTION?
+                                    </a>
+                                </h2>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- WRITING -->
+
+                        <div class="works-group">
+
+                            <h1 class="works-subheading">
+                                Writing
+                            </h1>
+
+                            <div class="works-sub-subheadings">
+
+                                <h2 class="active">
+                                    <a href="../writings/beatingadeadhorse.html">
+                                        Beating a Dead Horse
+                                    </a>
+                                </h2>
+
+                                <h2>
+                                    <a href="../writings/helengarner.html">
+                                        Helen Garner came into my work
+                                    </a>
+                                </h2>
+
+                                <h2>
+                                    <a href="../writings/trivialpursuit.html">
+                                        Trivial Pursuit
+                                    </a>
+                                </h2>
+
+                                <h2>
+                                    <a href="../writings/fionaandagnes.html">
+                                        For Fiona &amp; Agnes Martin: 'I Love the Whole World'
+                                    </a>
+                                </h2>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- COLLAPSE BUTTON -->
+
+                        <button
+                            class="works-toggle works-collapse"
+                            id="worksCollapse"
+                            onclick="toggleWorks()"
+                            aria-label="Collapse works menu"
+                            aria-controls="worksMenuContent"
+                            aria-expanded="true">
+
+                            [-]
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================================= -->
+            <!-- PROJECT WRITING -->
+            <!-- ================================= -->
+
+            <div class="project-gallery">
+
+                <article class="project-writing">
+
+
+                    <!-- WRITING TITLE -->
+
+                    <h2><b>Beating a Dead Horse</b></h2>
+
+
+                    <!-- WRITING CONTENT -->
+
+                    <p>
+                        My car breaks down in mid-July because the battery gives out and oil starts to leak through the engine. I lament the $1400 repair cost to my housemate and he tells me to stop filling it up with E10. I say something about the cost of living crisis and the next hour is spent bitching about the Current State of the World, and oil reserve scarcity, and the five cents it would have cost to buy a house in Fitzroy in the 90s.
+                    </p>
+
+                    <p>
+                        Minutes later and I’m on the tram. I’m complaining over the phone to my friend about car repair costs, and the cost of living crisis, and oil reserve scarcity, and inflation, and the moral quandary that is owning a car alongside the looming threat of environmental catastrophe when the ticket inspectors get on and I am forced to exit at the next stop.
+                    </p>
+
+                    <p>
+                        “Fucking ticket inspectors,” she says. “Least sexy job in the world.”
+                    </p>
+
+                    <p>
+                        I propose a pint with some of the others and she agrees under the provision that she is allowed to talk about the new myriad of Bad Things her ex has done since they got back together. I sigh, but I can’t pretend I don’t love it a little bit, and she obviously needs to keep flogging it, and if I look two hours forward, I already know that this will end in a promise to break up and the agreement that you deserve so much more than this. You really, really do.
+                    </p>
+
+                    <p>
+                        I attempt to rally the troops, but one friend can’t come because she’s spent $48 to watch some planes go by in a Tullamarine carpark, and the other has spent the past two hours huffing perfume samples at Myer and says she feels “delirious and slightly horny. Besides, there’s no point in trying to prevent her from going back. She loves to push that damn boulder.”
+                    </p>
+
+                    <p>
+                        I bump into ten people I know on the way to the pub and tell every single one of them about my broken car. Most are sympathetic, but this one guy who’s never even had a driver’s license asks me why I wouldn’t just sell my car because you hardly use it anyway and no one even needs a car in Melbourne. I feel my face go red hot, and my hands shake and contort in anger. Why wouldn’t I just sell my car? Are you serious? Do you even know what love is? We’ve been together for four years! I still remember our first time… Williamstown, 2022, a little awkward and nervous, tentatively pressing down the clutch as we drifted gently along the waterfront. To turn my back on that would be… wrong! Just plain wrong! An insult to our mechanic affinity!
+                    </p>
+
+                    <p>
+                        “It just sounds like it’s maybe causing you more stress than you need.”
+                    </p>
+
+                    <p>
+                        Well, you wouldn’t get it anyway. I’ll drive until it falls apart in my hands and then some, you blithering idiot.
+                    </p>
+
+                    <p>
+                        At the pub now, and the table conversation shifts to employment. One friend says (again) that he hopes his work gets firebombed overnight, and we (again) tell him that he needs to quit. But he won’t, and we know he won’t, and so we switch gears to exes again and the merits of staying together, or breaking up, or staying together, or… It’s a redundant exercise, with an inevitably regressive end, and we begin to tire of problem solving. “I don’t know why I can’t just stay away,” she sobs, and we follow it with it’s just love, it’s okay, it’s okay.
+                    </p>
+
+                    <p>
+                        The next day I twist my key in the ignition and am horrified when the engine refuses to turn over. Tears rolling down my cheeks, I press my forehead against the steering wheel and whisper please, please, please just start. Please. For me. I place the key in the ignition again. I twist. Nothing. I twist. Still nothing. I twist I twist I twist I twist I twist I twist I
+                    </p>
+
+
+                </article>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================================= -->
+    <!-- JAVASCRIPT -->
+    <!-- ================================= -->
+
+    <script>
+
+
+        /* ================================= */
+        /* TOGGLE ENTIRE WORKS MENU */
+        /* ================================= */
+
+        function toggleWorks() {
+
+            const works = document.getElementById("worksSubheadings");
+
+            const expand = document.getElementById("worksExpand");
+
+            const collapse = document.getElementById("worksCollapse");
+
+
+            const isCollapsed = works.classList.toggle("collapsed");
+
+
+            expand.setAttribute("aria-expanded", !isCollapsed);
+
+            collapse.setAttribute("aria-expanded", !isCollapsed);
+
+
+            if (isCollapsed) {
+
+                expand.focus({ preventScroll: true });
+
+            } else {
+
+                collapse.focus({ preventScroll: true });
+
+            }
+
+        }
+
+
+        /* ================================= */
+        /* TOGGLE CV */
+        /* ================================= */
+
+        function toggleCV() {
+
+            const navigation = document.querySelector(".navigation-row");
+
+            const cvButton = document.querySelector(".cv-heading");
+
+
+            const isOpen = navigation.classList.toggle("cv-open");
+
+
+            cvButton.classList.toggle("active", isOpen);
+
+        }
+
+
+        /* ================================= */
+        /* RETURN TO WORKS */
+        /* ================================= */
+
+        function showWorks() {
+
+            const navigation = document.querySelector(".navigation-row");
+
+            const cvButton = document.querySelector(".cv-heading");
+
+            const works = document.getElementById("worksSubheadings");
+
+            const expand = document.getElementById("worksExpand");
+
+            const collapse = document.getElementById("worksCollapse");
+
+
+            const wasCVOpen = navigation.classList.contains("cv-open");
+
+
+            navigation.classList.remove("cv-open");
+
+            cvButton.classList.remove("active");
+
+
+            if (window.matchMedia("(max-width: 768px)").matches) {
+
+                if (wasCVOpen) {
+
+                    works.classList.remove("collapsed");
+
+                } else {
+
+                    works.classList.toggle("collapsed");
+
+                }
+
+
+                const isCollapsed =
+                    works.classList.contains("collapsed");
+
+
+                expand.setAttribute("aria-expanded", !isCollapsed);
+
+                collapse.setAttribute("aria-expanded", !isCollapsed);
+
+            }
+
+        }
+
+
+        /* ================================= */
+        /* TOGGLE CONTACT */
+        /* ================================= */
+
+        function toggleContact() {
+
+            const panel = document.getElementById("contactPanel");
+
+            const button = document.querySelector(".contact-heading");
+
+
+            panel.classList.toggle("active");
+
+            button.classList.toggle("active");
+
+        }
+
+
+        /* ================================= */
+        /* COLLAPSE WORKS MENU ON MOBILE */
+        /* ================================= */
+
+        if (window.matchMedia("(max-width: 768px)").matches) {
+
+            const works = document.getElementById("worksSubheadings");
+
+            const expand = document.getElementById("worksExpand");
+
+            const collapse = document.getElementById("worksCollapse");
+
+
+            works.classList.add("collapsed");
+
+
+            expand.setAttribute("aria-expanded", "false");
+
+            collapse.setAttribute("aria-expanded", "false");
+
+        }
+
+    </script>
+
+</body>
+
+</html>

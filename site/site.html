@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lily Hogan</title>
+
+    <style>
+
+        /* FONTS */
+
+        @font-face {
+            font-family: officecode;
+            src: url("/typefaces/officecodeprod-light.otf");
+        }
+
+
+        /* GENERAL */
+
+        body {
+            background-color: white;
+            margin: 0;
+            min-height: 100vh;
+            cursor: url(/cursors/blueheart.cur), auto;
+        }
+
+
+        /* HEADER */
+
+        .header {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            justify-content: space-between;
+
+            width: 100%;
+            padding: 8px 8px;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            font-family: officecode;
+            font-size: 16px;
+            font-weight: normal;
+            color: black;
+            margin: 0;
+        }
+
+
+        /* INDIVIDUAL HEADING POSITIONS */
+
+        .works-container {
+            position: relative;
+            left: -10vw;
+            top: 0px;
+        }
+
+        .cv-container {
+            position: relative;
+            left: -10vw;
+            top: 0px;
+        }
+
+
+        /* NAME */
+
+        .namemark-container {
+            position: relative;
+        }
+
+        .namemark:hover h1 {
+            color: #ff00e1;
+        }
+
+
+        /* NAME SUBHEADINGS */
+
+        .namemark-subheadings {
+            display: none;
+            position: absolute;
+
+            top: 100%;
+            left: 0;
+
+            padding-top: 4px;
+
+            flex-direction: column;
+            gap: 2px;
+
+            font-family: officecode;
+            font-size: 16px;
+            color: black;
+
+            text-decoration: underline;
+            text-decoration-color: blue;
+            text-decoration-thickness: 1px;
+
+            white-space: nowrap;
+            pointer-events: none;
+        }
+
+        .namemark-subheadings p {
+            margin: 0;
+        }
+
+        .namemark:hover + .namemark-subheadings {
+            display: flex;
+        }
+
+
+        /* LINKS */
+
+        a {
+            text-decoration: none;
+            color: black;
+        }
+
+        a:hover {
+            color: #ff00e1;
+        }
+
+
+        /* WORKS BUTTON */
+
+        .works-heading {
+            cursor: pointer;
+        }
+
+        .works-heading:hover h1 {
+            color: #ff00e1;
+        }
+
+        .works-heading.active h1 {
+            color: #ff00e1;
+            font-weight: 1000;
+        }
+
+
+        /* WORKS IMAGE PREVIEW */
+
+        .works-preview {
+            display: none;
+            position: absolute;
+
+            /* POSITION */
+
+            top: 0;
+            left: calc(100% + 15px);
+
+            pointer-events: none;
+        }
+
+
+        /* SHOW IMAGE ON CLICK */
+
+        .works-preview.active {
+            display: block;
+        }
+
+
+        /* PREVIEW IMAGE STYLING */
+
+        .works-preview img {
+            display: block;
+
+            width: 100%;
+            height: auto;
+        }
+
+
+        /* CV BUTTON */
+
+        .cv-heading {
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .cv-heading:hover h1 {
+            color: #ff00e1;
+        }
+
+        .cv-heading.active h1 {
+            color: #ff00e1;
+            font-weight: 1000;
+        }
+
+
+        /* CV BOX */
+
+        .cv {
+            display: none;
+
+            position: absolute;
+
+            top: 0;
+            left: calc(100% + 15px);
+
+            width: 35vw;
+            overflow-y: auto;
+
+            font-family: officecode;
+            font-size: 16px;
+            color: black;
+
+            z-index: 100;
+        }
+
+
+        /* SHOW CV */
+
+        .cv.active {
+            display: block;
+        }
+
+
+        /* CV TEXT */
+
+        .cv h2 {
+            font-family: officecode;
+            font-size: 16px;
+            font-weight: 900;
+
+            text-decoration: underline;
+            text-decoration-color: blue;
+            text-decoration-thickness: 1px;
+
+            margin: 0;
+        }
+
+        .cv p {
+            margin: 0 0 10px 0;
+            line-height: 1;
+            font-size: 14px;
+        }
+
+        .cv a {
+            color: black;
+            text-decoration: none;
+        }
+
+        .cv a:hover {
+            color: #ff00e1;
+        }
+
+        .cv-download {
+            display: inline-block;
+            margin-top: 5px;
+        }
+
+
+        /* CONTACT BUTTON */
+
+        .contact-heading {
+            cursor: pointer;
+        }
+
+        .contact-heading:hover h1 {
+            color: #ff00e1;
+        }
+
+        .contact-heading.active h1 {
+            color: #ff00e1;
+        }
+
+
+        /* CONTACT LINKS PANEL */
+
+        .contact-panel {
+            display: none;
+
+            justify-content: flex-end;
+            align-items: center;
+
+            gap: 16px;
+
+            width: 100%;
+            padding: 8px 8px 0px 0px;
+            box-sizing: border-box;
+
+            font-family: officecode;
+            font-size: 16px;
+        }
+
+
+        /* SHOW CONTACT LINKS */
+
+        .contact-panel.active {
+            display: flex;
+        }
+
+
+        /* CONTACT LINK STYLING */
+
+        .contact-panel a {
+            color: black;
+            text-decoration: none;
+        }
+
+        .contact-panel a:hover {
+            text-decoration: underline;
+            text-decoration-color: blue;
+            text-decoration-thickness: 1px;
+        }
+
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- CONTACT LINKS -->
+
+    <div class="contact-panel" id="contactPanel">
+
+        <a href="mailto:lmhogan12@gmail.com">
+            [email]
+        </a>
+
+        <a
+            href="https://www.instagram.com/l1lyhogan/?hl=en"
+            target="_blank">
+            [instagram]
+        </a>
+
+    </div>
+
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+
+        <!-- NAME -->
+
+        <div class="namemark-container">
+
+            <div class="namemark">
+                <h1>Lily Hogan</h1>
+            </div>
+
+            <div class="namemark-subheadings">
+                <h1>Artist</h1>
+                <h1>Naarm</h1>
+            </div>
+
+        </div>
+
+
+        <!-- WORKS -->
+
+        <div class="works-container">
+
+            <div class="works-heading" onclick="toggleWorks()">
+                <h1>[works]</h1>
+            </div>
+
+
+            <!-- WORKS IMAGE PREVIEW -->
+
+            <div class="works-preview" id="worksPreview"></div>
+
+        </div>
+
+
+        <!-- CV -->
+
+        <div class="cv-container">
+
+            <div class="cv-heading" onclick="toggleCV()">
+                <h1>[cv]</h1>
+            </div>
+
+            <div class="cv" id="CvText">
+
+                <h2>Education</h2>
+
+                <br>
+
+                <p>
+                    Bachelor of Fine Arts (Photography), attained 2024,
+                    Victorian College of the Arts
+                </p>
+
+                <p>
+                    Bachelor of Fine Arts (Honours), attained 2026,
+                    Victorian College of the Arts
+                </p>
+
+                <br>
+
+                <h2>Select group exhibitions</h2>
+
+                <br>
+
+                <p>
+                    <i>Develop</i> 2024, 2025,
+                    Museum of Australian Photography (MAPh), Melbourne
+                </p>
+
+                <p>
+                    Neighbours, 2025, 138 Window Space, Melbourne
+                </p>
+
+                <p>
+                    Agnes Martin: I Love The Whole World,
+                    2025, 138 Shop Gallery, Melbourne
+                </p>
+
+                <p>
+                    Semiotic Soup, 2026,
+                    All The Very Best, Melbourne
+                </p>
+
+                <p>
+                    Halifax Gibbet, 2026,
+                    Secret Chamber, Melbourne
+                </p>
+
+                <p>
+                    Beating a Dead Horse, 2026,
+                    All The Very Best, Melbourne
+                </p>
+
+                <p>
+                    Victorian College of the Arts Graduate Show,
+                    2024, Victorian College of the Arts, Melbourne
+                </p>
+
+                <br>
+
+                <h2>Upcoming</h2>
+
+                <br>
+
+
+                <p>
+               Victorian College of the Arts Graduate Show, 2026, Victorian College of the Arts, Melbourne
+                </p>
+
+                <p>
+                    
+Show with Tove Gomes-McConnell, 2027, Kings ARI, Melbourne
+                </p>
+
+                <p>
+               Show with Freja Kvist Innes-Kerr and Sophia Jacoby, 2027, George Paton Gallery, Melbourne
+                </p>
+
+                <br>
+
+                <h2>Scholarships/Prizes/Awards</h2>
+
+                <br>
+
+                <p>
+                    Melbourne National Merit Scholarship,
+                    awarded 2022
+                </p>
+
+                <p>
+                    Stuart Black Memorial Scholarship,
+                    awarded 2024
+                </p>
+
+                <p>
+                    Finalist, University of Melbourne Student Union
+                    Art Prize, 2024, George Paton Gallery, Melbourne
+                </p>
+
+                <br>
+
+                <a
+                    href="./documents/LilyHoganArtistCV2026.pdf"
+                    download
+                    class="cv-download">
+
+                    [download cv]
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- CONTACT -->
+
+        <div class="contact-container">
+
+            <div class="contact-heading" onclick="toggleContact()">
+                <h1>[contact]</h1>
+            </div>
+
+        </div>
+
+
+    </header>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+
+        /* SELECTED WORKS IMAGES */
+
+        const selectedImages = [
+
+            "/site/selectedworks/26.6.silvering/26.6.9.jpg",
+            "/site/selectedworks/26.5.sub/26.5.1.JPG",
+            "/site/selectedworks/26.3.box/26.3.1.jpg",
+            "/site/selectedworks/26.2.Blowup/26.2.1.jpg",
+            "/site/selectedworks/26.1.blinders/26.1.1.jpg",
+            "/site/selectedworks/24.3.north78/24.3.1.jpg",
+            "/site/selectedworks/24.2.iwanttobenaked/24.2.1.jpg",
+            "/site/selectedworks/24.1.advicetoyounggirls/24-1-1.jpg"
+
+        ];
+
+
+        /* ANIMATION SETTINGS */
+
+        const animationSpeed = 1000;
+
+        let currentImage = 0;
+        let slideshowInterval = null;
+
+
+        /* IMAGE PREVIEW */
+
+        const worksPreview = document.getElementById("worksPreview");
+        const worksHeading = document.querySelector(".works-heading");
+
+        const previewImage = document.createElement("img");
+
+        previewImage.src = selectedImages[0];
+        previewImage.alt = "";
+
+        worksPreview.appendChild(previewImage);
+
+
+        /* PRELOAD IMAGES */
+
+        const preloadedImages = selectedImages.map(src => {
+
+            const img = new Image();
+
+            img.src = src;
+
+            return img;
+
+        });
+
+
+        /* START IMAGE ANIMATION */
+
+        function startSlideshow() {
+
+            clearInterval(slideshowInterval);
+
+            currentImage = 0;
+
+            previewImage.src = selectedImages[currentImage];
+
+            positionWorksPreview();
+
+            slideshowInterval = setInterval(() => {
+
+                currentImage =
+                    (currentImage + 1) % selectedImages.length;
+
+                previewImage.src = selectedImages[currentImage];
+
+            }, animationSpeed);
+
+        }
+
+
+        /* STOP IMAGE ANIMATION */
+
+        function stopSlideshow() {
+
+            clearInterval(slideshowInterval);
+
+            slideshowInterval = null;
+
+        }
+
+
+        /* TOGGLE WORKS ON CLICK */
+
+        function toggleWorks() {
+
+            const isOpen = worksPreview.classList.toggle("active");
+
+            worksHeading.classList.toggle("active", isOpen);
+
+            if (isOpen) {
+
+                startSlideshow();
+
+            } else {
+
+                stopSlideshow();
+
+            }
+
+        }
+
+
+        /* CALCULATE AVAILABLE IMAGE WIDTH */
+
+        function positionWorksPreview() {
+
+            const works = document.querySelector(".works-heading");
+            const cv = document.querySelector(".cv-heading");
+
+            const worksPosition = works.getBoundingClientRect();
+            const cvPosition = cv.getBoundingClientRect();
+
+            const availableWidth =
+                cvPosition.left - worksPosition.right - 30;
+
+            worksPreview.style.width =
+                Math.max(0, availableWidth) + "px";
+
+        }
+
+
+        /* UPDATE IMAGE POSITION */
+
+        window.addEventListener("load", positionWorksPreview);
+
+        window.addEventListener("resize", positionWorksPreview);
+
+        document.fonts.ready.then(positionWorksPreview);
+
+
+        /* TOGGLE CV */
+
+        function toggleCV() {
+
+            const cv = document.getElementById("CvText");
+            const button = document.querySelector(".cv-heading");
+
+            cv.classList.toggle("active");
+            button.classList.toggle("active");
+
+            positionWorksPreview();
+
+        }
+
+
+        /* TOGGLE CONTACT */
+
+        function toggleContact() {
+
+            const panel = document.getElementById("contactPanel");
+            const button = document.querySelector(".contact-heading");
+
+            panel.classList.toggle("active");
+            button.classList.toggle("active");
+
+            positionWorksPreview();
+
+        }
+
+
+    </script>
+
+
+</body>
+</html>
