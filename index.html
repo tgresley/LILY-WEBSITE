@@ -1,9 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Lily Hogan Portfolio</title>
 
     <style>
@@ -22,9 +22,11 @@
             background-color: white;
             margin: 0;
             min-height: 100vh;
+
             display: flex;
             justify-content: center;
             align-items: center;
+
             cursor: url(./cursors/blueheart.cur), auto;
         }
 
@@ -33,6 +35,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
+
             text-align: center;
             gap: 8px;
         }
@@ -59,7 +62,8 @@
             color: #000000;
             text-decoration: none;
             font-weight: normal;
-             cursor: url(./cursors/heart.cur), auto;
+
+            cursor: url(./cursors/heart.cur), auto;
         }
 
         a:hover {
@@ -67,13 +71,17 @@
             font-weight: 900;
         }
 
+
         /* IMAGE */
 
         #changing-image {
             height: 150px;
             width: auto;
+
             display: block;
+
             object-fit: contain;
+
             opacity: 1;
             transition: opacity 0.15s ease;
         }
@@ -82,7 +90,28 @@
             opacity: 0;
         }
 
+
+        /* MOBILE STYLING */
+
+        @media screen and (max-width: 768px) {
+
+            body {
+                min-height: 100dvh;
+                cursor: auto;
+            }
+
+            #changing-image {
+                height: 150px;
+                width: auto;
+                max-width: 100vw;
+
+                transition: none;
+            }
+
+        }
+
     </style>
+
 </head>
 
 <body>
@@ -91,8 +120,9 @@
 
         <h1>Lily Hogan</h1>
 
-
-        <img id="changing-image" src="./hpi/12.png" alt="Lily Hogan">
+        <img id="changing-image"
+             src="./hpi/12.png"
+             alt="Lily Hogan">
 
         <a href="./site/homepage.html">[enter]</a>
 
@@ -101,9 +131,10 @@
 
     <script>
 
-        // ADD YOUR IMAGES HERE
+        /* ADD YOUR IMAGES HERE */
 
         const images = [
+
             "./hpi/12.png",
             "./hpi/13.png",
             "./hpi/14.png",
@@ -118,10 +149,11 @@
             "./hpi/113.png",
             "./hpi/114.png",
             "./hpi/115.png"
+
         ];
 
 
-        // IMAGE SETTINGS
+        /* IMAGE SETTINGS */
 
         const image = document.getElementById("changing-image");
 
@@ -130,49 +162,100 @@
         let lastX = null;
         let lastY = null;
 
-        // HIGHER NUMBER = LESS SENSITIVE
+        let slideshowInterval = null;
+
+
+        /* DESKTOP MOUSE SENSITIVITY */
+
         const movementThreshold = 80;
 
-        // FADE SPEED
+
+        /* MOBILE SLIDESHOW SPEED */
+
+        const slideshowSpeed = 200;
+
+
+        /* FADE SPEED */
+
         const fadeSpeed = 0;
 
 
-        // PRELOAD IMAGES
+        /* DETECT MOBILE OR TOUCHSCREEN */
 
-        images.forEach(src => {
+        const mobileLayout = window.matchMedia(
+            "(max-width: 768px), (hover: none) and (pointer: coarse)"
+        );
+
+
+        /* PRELOAD IMAGES */
+
+        const preloadedImages = images.map(src => {
+
             const preload = new Image();
+
             preload.src = src;
+
+            return preload;
+
         });
 
 
-        // CHANGE IMAGE ON MOUSE MOVEMENT
+        /* CHANGE IMAGE */
+
+        function changeImage() {
+
+            currentImage = (currentImage + 1) % images.length;
+
+            image.classList.add("fading");
+
+            setTimeout(function() {
+
+                image.src = images[currentImage];
+
+                image.classList.remove("fading");
+
+            }, fadeSpeed);
+
+        }
+
+
+        /* ================================= */
+        /* DESKTOP — MOUSE MOVEMENT */
+        /* ================================= */
 
         document.addEventListener("mousemove", function(event) {
 
-            if (lastX === null) {
-                lastX = event.clientX;
-                lastY = event.clientY;
+
+            /* DISABLE MOUSE MOVEMENT ON MOBILE */
+
+            if (mobileLayout.matches) {
+
                 return;
+
             }
 
+
+            if (lastX === null) {
+
+                lastX = event.clientX;
+                lastY = event.clientY;
+
+                return;
+
+            }
+
+
             const distance = Math.hypot(
+
                 event.clientX - lastX,
                 event.clientY - lastY
+
             );
+
 
             if (distance >= movementThreshold) {
 
-                currentImage = (currentImage + 1) % images.length;
-
-                image.classList.add("fading");
-
-                setTimeout(function() {
-
-                    image.src = images[currentImage];
-
-                    image.classList.remove("fading");
-
-                }, fadeSpeed);
+                changeImage();
 
                 lastX = event.clientX;
                 lastY = event.clientY;
@@ -180,8 +263,74 @@
             }
 
         });
+
+
+        /* ================================= */
+        /* MOBILE — AUTOMATIC SLIDESHOW */
+        /* ================================= */
+
+        function startSlideshow() {
+
+            if (slideshowInterval !== null) {
+
+                return;
+
+            }
+
+            slideshowInterval = setInterval(function() {
+
+                changeImage();
+
+            }, slideshowSpeed);
+
+        }
+
+
+        /* STOP AUTOMATIC SLIDESHOW */
+
+        function stopSlideshow() {
+
+            clearInterval(slideshowInterval);
+
+            slideshowInterval = null;
+
+        }
+
+
+        /* ================================= */
+        /* SWITCH BETWEEN DESKTOP AND MOBILE */
+        /* ================================= */
+
+        function applyLayout() {
+
+            if (mobileLayout.matches) {
+
+                startSlideshow();
+
+            } else {
+
+                stopSlideshow();
+
+                lastX = null;
+                lastY = null;
+
+            }
+
+        }
+
+
+        /* APPLY ON PAGE LOAD */
+
+        applyLayout();
+
+
+        /* UPDATE WHEN SCREEN SIZE CHANGES */
+
+        mobileLayout.addEventListener("change", applyLayout);
+
 
     </script>
 
 </body>
+
 </html>

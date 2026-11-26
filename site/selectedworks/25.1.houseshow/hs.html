@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Lily Hogan — Silvering</title>
+    <title>Lily Hogan — House Show</title>
 
     <style>
 
@@ -74,9 +74,7 @@
         }
 
 
-        /* ================================= */
         /* NAME AND CONTACT ROW */
-        /* ================================= */
 
         .name-contact-row {
             display: flex;
@@ -90,6 +88,10 @@
 
         /* NAMEMARK */
 
+        .namemark {
+            position: relative;
+        }
+
         .namemark h1 {
             font-family: ocbold;
             font-size: 16px;
@@ -99,24 +101,19 @@
             cursor: url(/cursors/blueheart.cur), auto;
         }
 
-
-        /* NAME HOVER */
-
-        .namemark:hover h1 {
-            color: #ff00e1;
+        .namemark:hover > h1 {
+            opacity: 0;
         }
 
 
-        /* ================================= */
         /* NAME HOVER SUBHEADINGS */
-        /* ================================= */
 
         .namemark-subheadings {
             display: none;
-            position: fixed;
+            position: absolute;
 
-            bottom: 8px;
-            left: 8px;
+            top: 0;
+            left: 0;
 
             flex-direction: row;
             gap: 16px;
@@ -141,9 +138,7 @@
         }
 
 
-        /* ================================= */
         /* NAVIGATION ROW */
-        /* ================================= */
 
         .navigation-row {
             position: relative;
@@ -168,18 +163,15 @@
         }
 
 
-        /* ================================= */
         /* WORKS BUTTON */
-        /* ================================= */
 
         .works-heading {
             width: fit-content;
-
             cursor: url(/cursors/heart.cur), auto;
         }
 
         .works-heading h1 {
-            color: #000000;
+            color: black;
             font-weight: normal;
 
             text-decoration: underline;
@@ -192,9 +184,7 @@
         }
 
 
-        /* ================================= */
         /* CV BUTTON */
-        /* ================================= */
 
         .cv-heading {
             cursor: url(/cursors/starblack.cur), auto;
@@ -204,27 +194,17 @@
         }
 
         .cv-heading:hover h1 {
-            cursor: url(/cursors/starblack.cur), auto;
-
             color: #ff00e1;
-
-            text-decoration: underline;
-            text-decoration-color: #ff00e1;
-            text-decoration-thickness: 1px;
         }
 
         .cv-heading.active h1 {
-            cursor: url(/cursors/starblack.cur), auto;
-
             text-decoration: underline;
             text-decoration-color: #ff00e1;
             text-decoration-thickness: 1px;
         }
 
 
-        /* ================================= */
         /* CV CONTENT POSITION */
-        /* ================================= */
 
         .cv {
             display: none;
@@ -233,7 +213,7 @@
             top: 0;
             left: calc(100% + 16px);
 
-            width: 30vw;
+            width: 35vw;
 
             font-family: officecode;
             color: black;
@@ -242,33 +222,22 @@
         }
 
 
-        /* SHOW CV ON HOVER OR CLICK */
+        /* SHOW CV ON CLICK */
 
-        .navigation-row:has(.cv-heading:hover) .cv,
         .navigation-row.cv-open .cv {
             display: block;
         }
 
-
-        /* HIDE WORKS MENU WHEN CV IS VISIBLE */
-
-        .navigation-row:has(.cv-heading:hover) .works-subheadings,
         .navigation-row.cv-open .works-subheadings {
             display: none;
         }
 
-
-        /* REMOVE WORKS UNDERLINE WHEN CV IS VISIBLE */
-
-        .navigation-row:has(.cv-heading:hover) .works-heading h1,
         .navigation-row.cv-open .works-heading h1 {
             text-decoration: none;
         }
 
 
-        /* ================================= */
         /* WORKS MENU POSITION */
-        /* ================================= */
 
         .works-subheadings {
             position: absolute;
@@ -293,16 +262,13 @@
         }
 
 
-        /* ================================= */
         /* SHARED CV AND WORKS FORMATTING */
-        /* ================================= */
 
         .works-menu-content,
         .cv-menu-content {
             display: flex;
             flex-direction: column;
-
-            gap: 0px;
+            gap: 0;
         }
 
         .works-group,
@@ -312,9 +278,7 @@
         }
 
 
-        /* ================================= */
         /* SHARED SUBHEADING STYLING */
-        /* ================================= */
 
         .works-subheadings h1,
         .cv h2 {
@@ -333,9 +297,7 @@
         }
 
 
-        /* ================================= */
         /* SHARED SUB-SUBHEADING CONTAINERS */
-        /* ================================= */
 
         .works-sub-subheadings,
         .cv-sub-subheadings {
@@ -348,7 +310,7 @@
         }
 
 
-        /* WORKS SUB-SUBHEADING STYLING */
+        /* WORKS SUB-SUBHEADINGS */
 
         .works-sub-subheadings h2 {
             font-family: officecode;
@@ -360,14 +322,16 @@
             line-height: 1;
 
             margin: 0;
+
+            cursor: url(/cursors/heart.cur), auto;
         }
 
 
-        /* CV SUB-SUBHEADING STYLING */
+        /* CV SUB-SUBHEADINGS */
 
         .cv-sub-subheadings p {
             font-family: officecode;
-            font-size: 12px;
+            font-size: 14px;
             font-weight: 100;
             color: black;
 
@@ -377,19 +341,12 @@
         }
 
 
-        /* WORKS CURSOR */
-
-        .works-sub-subheadings h2 {
-            cursor: url(/cursors/heart.cur), auto;
-        }
+        /* WORKS LINKS */
 
         .works-sub-subheadings a {
             text-decoration: none;
-            color: #000000;
+            color: black;
         }
-
-
-        /* SUB-SUBHEADING HOVER */
 
         .works-sub-subheadings a:hover {
             color: #ff00e1;
@@ -404,9 +361,7 @@
         }
 
 
-        /* ================================= */
         /* CV DOWNLOAD LINK */
-        /* ================================= */
 
         .cv a {
             color: black;
@@ -423,16 +378,14 @@
             display: inline-block;
 
             font-family: officecode;
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 100;
 
-            margin-top: 0px;
+            margin-top: 0;
         }
 
 
-        /* ================================= */
-        /* WORKS MENU TOGGLE BUTTONS */
-        /* ================================= */
+        /* DESKTOP WORKS TOGGLE BUTTONS */
 
         .works-toggle {
             background: none;
@@ -449,8 +402,6 @@
 
             width: fit-content;
 
-            text-align: right;
-
             cursor: url(/cursors/heart.cur), auto;
         }
 
@@ -458,24 +409,14 @@
             color: #ff00e1;
         }
 
-
-        /* EXPAND BUTTON */
-
         .works-expand {
             display: none;
         }
 
-
-        /* COLLAPSE BUTTON */
-
         .works-collapse {
             align-self: flex-start;
-
             margin-top: 4px;
         }
-
-
-        /* COLLAPSED WORKS MENU */
 
         .works-subheadings.collapsed .works-menu-content {
             display: none;
@@ -485,10 +426,13 @@
             display: block;
         }
 
+        .navigation-row:has(.works-subheadings.collapsed)
+        .works-heading h1 {
+            text-decoration: none;
+        }
 
-        /* ================================= */
+
         /* PROJECT GALLERY */
-        /* ================================= */
 
         .project-gallery {
             display: flex;
@@ -505,9 +449,7 @@
         }
 
 
-        /* ================================= */
         /* RANDOM IMAGE PLACEMENT */
-        /* ================================= */
 
         .image-grid {
             position: relative;
@@ -539,9 +481,7 @@
         }
 
 
-        /* ================================= */
         /* PROJECT CAPTION */
-        /* ================================= */
 
         .project-caption {
             font-family: officecode;
@@ -557,9 +497,7 @@
         }
 
 
-        /* ================================= */
         /* CONTACT POSITION */
-        /* ================================= */
 
         .contact-container {
             position: relative;
@@ -580,30 +518,24 @@
 
         .contact-heading:hover h1 {
             color: #ff00e1;
-
-            cursor: url(/cursors/heart.cur), auto;
         }
 
         .contact-heading.active h1 {
             text-decoration: underline;
             text-decoration-color: #ff00e1;
-
-            cursor: url(/cursors/heart.cur), auto;
         }
 
 
-        /* ================================= */
         /* CONTACT LINKS PANEL */
-        /* ================================= */
 
         .contact-panel {
             display: none;
             position: fixed;
 
-            bottom: 8px;
-            left: 8px;
+            top: 8px;
+            right: 8px;
 
-            width: var(--gallery-width);
+            width: auto;
 
             flex-direction: row;
             justify-content: flex-end;
@@ -637,10 +569,7 @@
             text-decoration: underline;
             text-decoration-color: blue;
             text-decoration-thickness: 1px;
-
-            cursor: url(/cursors/heart.cur), auto;
         }
-
 
 
         /* ================================= */
@@ -649,15 +578,9 @@
 
         @media screen and (max-width: 768px) {
 
-
-            /* GENERAL */
-
             body {
                 cursor: auto;
             }
-
-
-            /* HEADER */
 
             .header {
                 width: 100%;
@@ -675,9 +598,11 @@
                 width: var(--gallery-width);
 
                 display: grid;
-                grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+                grid-template-columns:
+                    minmax(0, 1fr) minmax(0, 1fr);
 
                 align-items: start;
+
                 row-gap: 8px;
 
                 padding-bottom: 65px;
@@ -695,6 +620,8 @@
             /* NAMEMARK — TOP LEFT */
 
             .namemark {
+                position: relative;
+
                 grid-column: 1;
                 grid-row: 1;
 
@@ -707,13 +634,47 @@
                 font-weight: normal;
 
                 color: black;
-
                 cursor: auto;
             }
 
-            .namemark:hover h1,
-            .namemark:active h1 {
-                color: black;
+
+            /* NAMEMARK HOVER */
+
+            .namemark:hover > h1 {
+                opacity: 0;
+            }
+
+            .namemark-subheadings {
+                display: none;
+                position: absolute;
+
+                top: 0;
+                left: 0;
+                bottom: auto;
+                right: auto;
+
+                flex-direction: row;
+                align-items: center;
+
+                gap: 8px;
+
+                white-space: nowrap;
+                pointer-events: none;
+
+                z-index: 200;
+            }
+
+            .namemark-subheadings h1 {
+                font-family: ocbold;
+                font-size: 16px;
+                font-weight: normal;
+                color: #ff00e1;
+
+                margin: 0;
+            }
+
+            .namemark:hover + .namemark-subheadings {
+                display: flex;
             }
 
 
@@ -726,6 +687,37 @@
                 justify-self: end;
 
                 position: relative;
+
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+            }
+
+
+            /* CONTACT LINKS — BELOW BUTTON */
+
+            .contact-panel {
+                display: none;
+                position: static;
+
+                width: auto;
+
+                flex-direction: row;
+                align-items: center;
+                justify-content: flex-end;
+
+                gap: 4px;
+                margin-top: 8px;
+                padding: 0;
+
+                font-family: officecode;
+                font-size: 16px;
+
+                background-color: transparent;
+            }
+
+            .contact-panel.active {
+                display: flex;
             }
 
 
@@ -736,8 +728,6 @@
                 grid-row: 2;
 
                 justify-self: start;
-
-                padding-right: 32px;
             }
 
 
@@ -751,7 +741,7 @@
             }
 
 
-            /* WORKS AND CV CONTENT */
+            /* WORKS AND CV CONTENT POSITION */
 
             .works-subheadings,
             .cv {
@@ -766,13 +756,16 @@
                 padding: 0;
 
                 box-sizing: border-box;
+
+                text-align: left;
             }
 
 
             /* WORKS MENU */
 
             .works-subheadings {
-                display: flex;
+                display: none;
+
                 flex-direction: column;
 
                 gap: 8px;
@@ -783,87 +776,86 @@
                 flex-direction: column;
             }
 
-
-            /* WORKS HEADINGS */
-
             .works-subheadings h1 {
                 font-size: 16px;
                 text-align: left;
             }
 
-
-            /* WORKS TITLES */
-
             .works-sub-subheadings h2 {
                 font-size: 14px;
                 line-height: 1.2;
-
                 text-align: left;
             }
 
 
-            /* WORKS EXPAND AND COLLAPSE BUTTONS */
+            /* REMOVE + AND - BUTTONS ON MOBILE */
 
-            .works-toggle {
-                font-size: 16px;
-            }
-
+            .works-toggle,
             .works-expand,
-            .works-collapse {
-                position: absolute;
-
-                grid-column: 1;
-                grid-row: 2;
-
-                top: 0;
-                left: 80px;
-                right: auto;
-
-                margin: 0;
-                padding: 0;
-
-                width: fit-content;
+            .works-collapse,
+            .works-subheadings.collapsed .works-expand {
+                display: none !important;
             }
 
 
-            /* COLLAPSED WORKS MENU */
+            /* COLLAPSIBLE WORKS MENU */
 
-            .works-subheadings.collapsed {
-                display: contents;
+            .navigation-row .works-subheadings.collapsed {
+                display: none !important;
             }
 
-            .works-subheadings.collapsed .works-menu-content {
+            .navigation-row:not(.cv-open)
+            .works-subheadings:not(.collapsed) {
+                display: flex;
+            }
+
+            .navigation-row.cv-open .works-subheadings {
                 display: none;
             }
 
-            .works-subheadings.collapsed .works-expand {
+
+            /* CV STYLING — LEFT ALIGNED */
+
+            .cv {
+                display: none;
+                text-align: left;
+            }
+
+            .cv-menu-content {
+                display: flex;
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .cv h2 {
+                font-size: 16px;
+                text-align: left;
+            }
+
+            .cv-sub-subheadings p {
+                font-size: 14px;
+                line-height: 1.3;
+                text-align: left;
+            }
+
+            .cv-download {
+                align-self: flex-start;
+                text-align: left;
+            }
+
+
+            /* CV VISIBILITY */
+
+            .navigation-row:not(.cv-open) .cv {
+                display: none;
+            }
+
+            .navigation-row.cv-open .cv {
                 display: block;
             }
 
 
-            /* CV STYLING */
-
-            .cv h2 {
-                font-size: 16px;
-                text-align: right;
-            }
-
-            .cv-sub-subheadings p {
-                font-size: 12px;
-                line-height: 1.3;
-
-                text-align: right;
-            }
-
-            .cv-download {
-                align-self: flex-end;
-                text-align: right;
-            }
-
-
-            /* ================================= */
             /* FULL WIDTH PROJECT GALLERY */
-            /* ================================= */
 
             .project-gallery {
                 grid-column: 1 / -1;
@@ -884,119 +876,56 @@
 
             .image-grid {
                 width: 100%;
-                height: 65vh;
 
-                --image-size: 50px;
+                height: calc(100dvh - 120px);
+
+                /* ADJUST MOBILE IMAGE SIZE HERE */
+
+                --image-size: 100px;
             }
 
 
-            /* PROJECT CAPTION */
+            /* REDUCE GALLERY HEIGHT WHEN CONTACT IS OPEN */
+
+            .namemark-container:has(.contact-panel.active)
+            .image-grid {
+                height: calc(100dvh - 150px);
+            }
+
+
+            /* PROJECT CAPTION — FIXED TO BOTTOM */
 
             .project-caption {
-                padding: 4px 8px 0 8px;
-
-                font-size: 14px;
-                line-height: 1.2;
-            }
-
-
-            /* PERMANENT ARTIST INFORMATION */
-
-            .namemark-subheadings {
-                display: flex;
                 position: fixed;
 
                 bottom: 8px;
                 left: 8px;
-                right: auto;
-
-                flex-direction: row;
-                justify-content: flex-start;
-                align-items: center;
-
-                gap: 8px;
-
-                white-space: nowrap;
-
-                z-index: 200;
-            }
-
-            .namemark-subheadings h1 {
-                font-family: ocbold;
-                font-size: 16px;
-                font-weight: normal;
-
-                color: #ff00e1;
-
-                line-height: 1.2;
-                margin: 0;
-            }
-
-
-            /* CONTACT LINKS — BOTTOM RIGHT */
-
-            .contact-panel {
-                position: fixed;
-
-                bottom: 8px;
                 right: 8px;
-                left: auto;
-
-                width: auto;
-
-                flex-direction: column;
-                justify-content: flex-end;
-                align-items: flex-end;
-
-                gap: 4px;
 
                 padding: 0;
+                margin: 0;
 
                 font-family: officecode;
-                font-size: 16px;
+                font-size: 14px;
+                line-height: 1.2;
 
-                background-color: transparent;
+                text-align: left;
+                color: black;
 
-                z-index: 200;
-            }
-
-            .contact-panel.active {
-                display: flex;
-            }
-
-
-            /* CV AND WORKS VISIBILITY */
-
-            .navigation-row:not(.cv-open) .cv {
-                display: none;
-            }
-
-            .navigation-row:not(.cv-open)
-            .works-subheadings:not(.collapsed) {
-                display: flex;
-            }
-
-            .navigation-row:not(.cv-open)
-            .works-subheadings.collapsed {
-                display: contents;
-            }
-
-            .navigation-row.cv-open .cv {
-                display: block;
-            }
-
-            .navigation-row.cv-open .works-subheadings {
-                display: none;
+                z-index: 100;
             }
 
 
-            /* REPLACE IMAGES WITH CV OR WORKS */
+            /* HIDE GALLERY WHEN CV IS OPEN */
 
             .namemark-container:has(
                 .navigation-row.cv-open
             ) .project-gallery {
                 display: none;
             }
+
+
+            /* HIDE GALLERY WHEN WORKS IS OPEN */
 
             .namemark-container:has(
                 .navigation-row:not(.cv-open)
@@ -1006,9 +935,25 @@
             }
 
 
-            /* MOBILE ACTIVE BUTTON STYLING */
+            /* RESTORE GALLERY WHEN BOTH ARE CLOSED */
 
-            .navigation-row:not(.cv-open) .works-heading h1 {
+            .namemark-container:has(
+                .navigation-row:not(.cv-open)
+                .works-subheadings.collapsed
+            ) .project-gallery {
+                display: flex;
+            }
+
+
+            /* WORKS ACTIVE BUTTON STYLING */
+
+            .navigation-row .works-heading h1 {
+                text-decoration: none;
+            }
+
+            .navigation-row:not(.cv-open):has(
+                .works-subheadings:not(.collapsed)
+            ) .works-heading h1 {
                 text-decoration: underline;
                 text-decoration-color: #ff00e1;
                 text-decoration-thickness: 1px;
@@ -1018,29 +963,33 @@
                 text-decoration: none;
             }
 
-        }
 
+            /* CV ACTIVE BUTTON STYLING */
 
-        /* ================================= */
-        /* TOUCHSCREEN NAVIGATION */
-        /* ================================= */
-
-        @media (hover: none) {
-
-            .navigation-row:not(.cv-open):has(.cv-heading:hover) .cv {
-                display: none;
-            }
-
-            .navigation-row:not(.cv-open):has(.cv-heading:hover)
-            .works-subheadings:not(.collapsed) {
-                display: flex;
-            }
-
-            .navigation-row:not(.cv-open):has(.cv-heading:hover)
-            .works-heading h1 {
+            .cv-heading.active h1 {
                 text-decoration: underline;
                 text-decoration-color: #ff00e1;
                 text-decoration-thickness: 1px;
+            }
+
+
+            /* CONTACT ACTIVE BUTTON STYLING */
+
+            .contact-heading.active h1 {
+                text-decoration: underline;
+                text-decoration-color: #ff00e1;
+                text-decoration-thickness: 1px;
+            }
+
+        }
+
+
+        /* TOUCHSCREEN NAVIGATION */
+
+        @media (hover: none) {
+
+            .navigation-row:not(.cv-open) .cv {
+                display: none;
             }
 
             .navigation-row.cv-open .cv {
@@ -1051,16 +1000,10 @@
                 display: none;
             }
 
-            .navigation-row.cv-open .works-heading h1 {
-                text-decoration: none;
-            }
-
         }
 
 
-        /* ================================= */
         /* EXTRA SMALL PHONE SCREENS */
-        /* ================================= */
 
         @media screen and (max-width: 380px) {
 
@@ -1077,30 +1020,17 @@
 
 <body>
 
-
-    <!-- HEADER -->
-
     <header class="header">
-
-
-        <!-- NAMEMARK VERTICAL COLUMN -->
 
         <div class="namemark-container">
 
 
-            <!-- ================================= -->
             <!-- NAME AND CONTACT ROW -->
-            <!-- ================================= -->
 
             <div class="name-contact-row">
 
-
-                <!-- NAME -->
-
                 <div class="namemark">
-
                     <h1>Lily Hogan</h1>
-
                 </div>
 
 
@@ -1118,7 +1048,8 @@
 
                 <div class="contact-container">
 
-                    <div class="contact-heading" onclick="toggleContact()">
+                    <div class="contact-heading"
+                         onclick="toggleContact()">
 
                         <h1>[contact]</h1>
 
@@ -1130,17 +1061,12 @@
                     <div class="contact-panel" id="contactPanel">
 
                         <a href="mailto:lmhogan12@gmail.com">
-
                             [email]
-
                         </a>
 
-                        <a
-                            href="https://www.instagram.com/l1lyhogan/?hl=en"
-                            target="_blank">
-
+                        <a href="https://www.instagram.com/l1lyhogan/?hl=en"
+                           target="_blank">
                             [instagram]
-
                         </a>
 
                     </div>
@@ -1150,9 +1076,7 @@
             </div>
 
 
-            <!-- ================================= -->
             <!-- NAVIGATION ROW -->
-            <!-- ================================= -->
 
             <div class="navigation-row">
 
@@ -1174,7 +1098,16 @@
 
                 <div class="works-container">
 
-                    <div class="works-heading" onclick="showWorks()">
+                    <div class="works-heading"
+                         onclick="showWorks()"
+                         role="button"
+                         tabindex="0"
+                         aria-controls="worksSubheadings"
+                         aria-expanded="true"
+                         onkeydown="if (event.key === 'Enter' || event.key === ' ') {
+                             event.preventDefault();
+                             showWorks();
+                         }">
 
                         <h1>[works]</h1>
 
@@ -1183,9 +1116,7 @@
                 </div>
 
 
-                <!-- ================================= -->
                 <!-- CV TEXT -->
-                <!-- ================================= -->
 
                 <div class="cv" id="CvText">
 
@@ -1334,10 +1265,9 @@
 
                         <!-- DOWNLOAD CV -->
 
-                        <a
-                            href="/documents/LilyHoganArtistCV2026.pdf"
-                            download
-                            class="cv-download">
+                        <a href="/documents/LilyHoganArtistCV2026.pdf"
+                           download
+                           class="cv-download">
 
                             [download cv]
 
@@ -1348,14 +1278,12 @@
                 </div>
 
 
-                <!-- ================================= -->
                 <!-- WORKS MENU -->
-                <!-- ================================= -->
 
                 <div class="works-subheadings" id="worksSubheadings">
 
 
-                    <!-- EXPAND BUTTON -->
+                    <!-- DESKTOP EXPAND BUTTON -->
 
                     <button
                         class="works-toggle works-expand"
@@ -1510,7 +1438,8 @@
 
                                 <h2>
                                     <a href="../writings/fionaandagnes.html">
-                                        For Fiona &amp; Agnes Martin: 'I Love the Whole World'
+                                        For Fiona &amp; Agnes Martin:
+                                        'I Love the Whole World'
                                     </a>
                                 </h2>
 
@@ -1519,7 +1448,7 @@
                         </div>
 
 
-                        <!-- COLLAPSE BUTTON -->
+                        <!-- DESKTOP COLLAPSE BUTTON -->
 
                         <button
                             class="works-toggle works-collapse"
@@ -1540,9 +1469,7 @@
             </div>
 
 
-            <!-- ================================= -->
             <!-- PROJECT GALLERY -->
-            <!-- ================================= -->
 
             <div class="project-gallery">
 
@@ -1556,7 +1483,7 @@
 
                 <div class="project-caption">
 
-                House Show, Photo dump
+                    House Show, Photo dump
 
                 </div>
 
@@ -1574,46 +1501,41 @@
     <script>
 
 
-        /* ================================= */
         /* PROJECT IMAGES */
-        /* ================================= */
 
         const projectImages = [
 
-        "/site/selectedworks/25.1.houseshow/000050.jpeg",
-"/site/selectedworks/25.1.houseshow/000051.jpeg",
-"/site/selectedworks/25.1.houseshow/000052.jpeg",
-"/site/selectedworks/25.1.houseshow/000053.jpeg",
-"/site/selectedworks/25.1.houseshow/000054.jpeg",
-"/site/selectedworks/25.1.houseshow/000055.jpeg",
-"/site/selectedworks/25.1.houseshow/000056.jpeg",
-"/site/selectedworks/25.1.houseshow/000057.jpeg",
-"/site/selectedworks/25.1.houseshow/000058.jpeg",
-"/site/selectedworks/25.1.houseshow/000059.jpeg",
-"/site/selectedworks/25.1.houseshow/000060.jpeg",
-"/site/selectedworks/25.1.houseshow/000061.jpeg",
-"/site/selectedworks/25.1.houseshow/000062.jpeg",
-"/site/selectedworks/25.1.houseshow/000063.jpeg",
-"/site/selectedworks/25.1.houseshow/000064.jpeg",
-"/site/selectedworks/25.1.houseshow/000065.jpeg",
-"/site/selectedworks/25.1.houseshow/000066.jpeg"
+            "./000050.jpeg",
+            "./000051.jpeg",
+            "./000052.jpeg",
+            "./000053.jpeg",
+            "./000054.jpeg",
+            "./000055.jpeg",
+            "./000056.jpeg",
+            "./000057.jpeg",
+            "./000058.jpeg",
+            "./000059.jpeg",
+            "./000060.jpeg",
+            "./000061.jpeg",
+            "./000062.jpeg",
+            "./000063.jpeg",
+            "./000064.jpeg",
+            "./000065.jpeg",
+            "./000066.jpeg"
 
         ];
 
 
-        /* ================================= */
         /* GENERATE RANDOM IMAGE PLACEMENT */
-        /* ================================= */
 
         const imageGrid = document.getElementById("imageGrid");
-
 
         projectImages.forEach((src, index) => {
 
             const img = document.createElement("img");
 
             img.src = src;
-            img.alt = "Project image " + (index + 1);
+            img.alt = "House Show — image " + (index + 1);
 
 
             /* RANDOM HORIZONTAL AND VERTICAL POSITION */
@@ -1624,9 +1546,11 @@
 
             /* KEEP IMAGES WITHIN THE GALLERY AREA */
 
-            img.style.left = `calc(${randomX * 100}% - ${randomX} * var(--image-size))`;
+            img.style.left =
+                `calc(${randomX * 100}% - ${randomX} * var(--image-size))`;
 
-            img.style.top = `calc(${randomY * 100}% - ${randomY} * var(--image-size))`;
+            img.style.top =
+                `calc(${randomY * 100}% - ${randomY} * var(--image-size))`;
 
 
             /* ADD IMAGE TO GALLERY */
@@ -1636,87 +1560,132 @@
         });
 
 
-        /* ================================= */
-        /* TOGGLE ENTIRE WORKS MENU */
-        /* ================================= */
+        /* SYNC WORKS MENU STATE */
+
+        function syncWorksState() {
+
+            const works =
+                document.getElementById("worksSubheadings");
+
+            const navigation =
+                document.querySelector(".navigation-row");
+
+            const expanded =
+                !works.classList.contains("collapsed") &&
+                !navigation.classList.contains("cv-open");
+
+            document.querySelector(".works-heading")
+                .setAttribute("aria-expanded", String(expanded));
+
+            document.getElementById("worksExpand")
+                .setAttribute("aria-expanded", String(expanded));
+
+            document.getElementById("worksCollapse")
+                .setAttribute("aria-expanded", String(expanded));
+
+        }
+
+
+        /* DESKTOP WORKS TOGGLE */
 
         function toggleWorks() {
 
-            const works = document.getElementById("worksSubheadings");
+            const works =
+                document.getElementById("worksSubheadings");
 
-            const expand = document.getElementById("worksExpand");
+            const isCollapsed =
+                works.classList.toggle("collapsed");
 
-            const collapse = document.getElementById("worksCollapse");
+            syncWorksState();
 
+            if (!window.matchMedia("(max-width: 768px)").matches) {
 
-            const isCollapsed = works.classList.toggle("collapsed");
-
-
-            expand.setAttribute("aria-expanded", !isCollapsed);
-
-            collapse.setAttribute("aria-expanded", !isCollapsed);
-
-
-            if (isCollapsed) {
-
-                expand.focus({ preventScroll: true });
-
-            } else {
-
-                collapse.focus({ preventScroll: true });
+                document.getElementById(
+                    isCollapsed ? "worksExpand" : "worksCollapse"
+                ).focus({ preventScroll: true });
 
             }
 
         }
 
 
-        /* ================================= */
         /* TOGGLE CV */
-        /* ================================= */
 
         function toggleCV() {
 
-            const navigation = document.querySelector(".navigation-row");
+            const navigation =
+                document.querySelector(".navigation-row");
 
-            const cvButton = document.querySelector(".cv-heading");
+            const cvButton =
+                document.querySelector(".cv-heading");
 
-
-            const isOpen = navigation.classList.toggle("cv-open");
-
+            const isOpen =
+                navigation.classList.toggle("cv-open");
 
             cvButton.classList.toggle("active", isOpen);
+
+            syncWorksState();
 
         }
 
 
-        /* ================================= */
-        /* RETURN TO WORKS */
-        /* ================================= */
+        /* TOGGLE WORKS */
 
         function showWorks() {
 
-            const navigation = document.querySelector(".navigation-row");
+            const navigation =
+                document.querySelector(".navigation-row");
 
-            const cvButton = document.querySelector(".cv-heading");
+            const cvButton =
+                document.querySelector(".cv-heading");
 
+            const works =
+                document.getElementById("worksSubheadings");
+
+            const wasCVOpen =
+                navigation.classList.contains("cv-open");
 
             navigation.classList.remove("cv-open");
 
             cvButton.classList.remove("active");
 
+
+            /* MOBILE — OPEN AND CLOSE USING WORKS BUTTON */
+
+            if (window.matchMedia("(max-width: 768px)").matches) {
+
+                if (wasCVOpen) {
+
+                    works.classList.remove("collapsed");
+
+                } else {
+
+                    works.classList.toggle("collapsed");
+
+                }
+
+            } else {
+
+                /* DESKTOP — RETURN TO WORKS */
+
+                works.classList.remove("collapsed");
+
+            }
+
+            syncWorksState();
+
         }
 
 
-        /* ================================= */
         /* TOGGLE CONTACT */
-        /* ================================= */
 
         function toggleContact() {
 
-            const panel = document.getElementById("contactPanel");
+            const panel =
+                document.getElementById("contactPanel");
 
-            const button = document.querySelector(".contact-heading");
-
+            const button =
+                document.querySelector(".contact-heading");
 
             panel.classList.toggle("active");
 
@@ -1725,27 +1694,24 @@
         }
 
 
-        /* ================================= */
         /* COLLAPSE WORKS MENU ON MOBILE */
-        /* ================================= */
 
-        if (window.matchMedia("(max-width: 768px)").matches) {
+        const mobileLayout =
+            window.matchMedia("(max-width: 768px)");
 
-            const works = document.getElementById("worksSubheadings");
+        function applyLayout(event) {
 
-            const expand = document.getElementById("worksExpand");
+            document.getElementById("worksSubheadings")
+                .classList.toggle("collapsed", event.matches);
 
-            const collapse = document.getElementById("worksCollapse");
-
-
-            works.classList.add("collapsed");
-
-
-            expand.setAttribute("aria-expanded", "false");
-
-            collapse.setAttribute("aria-expanded", "false");
+            syncWorksState();
 
         }
+
+        applyLayout(mobileLayout);
+
+        mobileLayout.addEventListener("change", applyLayout);
+
 
     </script>
 

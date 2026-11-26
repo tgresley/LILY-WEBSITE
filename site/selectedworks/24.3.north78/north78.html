@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lily Hogan — Silvering</title>
+
+    <title>Lily Hogan — North 1978 and Untitled (Echo)</title>
 
     <style>
 
@@ -45,7 +46,7 @@
             justify-content: space-between;
 
             width: 100%;
-            padding: 8px 8px;
+            padding: 8px;
             box-sizing: border-box;
         }
 
@@ -73,9 +74,7 @@
         }
 
 
-        /* ================================= */
         /* NAME AND CONTACT ROW */
-        /* ================================= */
 
         .name-contact-row {
             display: flex;
@@ -89,6 +88,10 @@
 
         /* NAMEMARK */
 
+        .namemark {
+            position: relative;
+        }
+
         .namemark h1 {
             font-family: ocbold;
             font-size: 16px;
@@ -101,21 +104,19 @@
 
         /* NAME HOVER */
 
-        .namemark:hover h1 {
-            color: #ff00e1;
+        .namemark:hover > h1 {
+            opacity: 0;
         }
 
 
-        /* ================================= */
         /* NAME HOVER SUBHEADINGS */
-        /* ================================= */
 
         .namemark-subheadings {
             display: none;
-            position: fixed;
+            position: absolute;
 
-            bottom: 8px;
-            left: 8px;
+            top: 0;
+            left: 0;
 
             flex-direction: row;
             gap: 16px;
@@ -140,9 +141,7 @@
         }
 
 
-        /* ================================= */
         /* NAVIGATION ROW */
-        /* ================================= */
 
         .navigation-row {
             position: relative;
@@ -167,9 +166,7 @@
         }
 
 
-        /* ================================= */
         /* WORKS BUTTON */
-        /* ================================= */
 
         .works-heading {
             width: fit-content;
@@ -178,7 +175,7 @@
         }
 
         .works-heading h1 {
-            color: #000000;
+            color: black;
             font-weight: normal;
 
             text-decoration: underline;
@@ -186,52 +183,32 @@
             text-decoration-thickness: 1px;
         }
 
-
-        /* WORKS BUTTON HOVER */
-
         .works-heading:hover h1 {
             color: #ff00e1;
         }
 
 
-        /* ================================= */
         /* CV BUTTON */
-        /* ================================= */
 
         .cv-heading {
             cursor: url(/cursors/starblack.cur), auto;
             transition: color 0.2s ease;
+
             width: fit-content;
         }
 
-
-        /* CV HOVER */
-
         .cv-heading:hover h1 {
-            cursor: url(/cursors/starblack.cur), auto;
-
             color: #ff00e1;
-
-            text-decoration: underline;
-            text-decoration-color: #ff00e1;
-            text-decoration-thickness: 1px;
         }
-
-
-        /* CV SELECTED */
 
         .cv-heading.active h1 {
-            cursor: url(/cursors/starblack.cur), auto;
-
             text-decoration: underline;
             text-decoration-color: #ff00e1;
             text-decoration-thickness: 1px;
         }
 
 
-        /* ================================= */
         /* CV CONTENT POSITION */
-        /* ================================= */
 
         .cv {
             display: none;
@@ -240,7 +217,7 @@
             top: 0;
             left: calc(100% + 16px);
 
-            width: 30vw;
+            width: 35vw;
 
             font-family: officecode;
             color: black;
@@ -249,35 +226,25 @@
         }
 
 
-        /* ================================= */
-        /* SHOW CV ON HOVER OR CLICK */
-        /* ================================= */
+        /* SHOW CV ON CLICK */
 
-        .navigation-row:has(.cv-heading:hover) .cv,
         .navigation-row.cv-open .cv {
             display: block;
         }
 
 
-        /* HIDE WORKS MENU WHEN CV IS VISIBLE */
+        /* HIDE WORKS WHEN CV IS OPEN */
 
-        .navigation-row:has(.cv-heading:hover) .works-subheadings,
         .navigation-row.cv-open .works-subheadings {
             display: none;
         }
 
-
-        /* REMOVE WORKS UNDERLINE WHEN CV IS VISIBLE */
-
-        .navigation-row:has(.cv-heading:hover) .works-heading h1,
         .navigation-row.cv-open .works-heading h1 {
             text-decoration: none;
         }
 
 
-        /* ================================= */
         /* WORKS MENU POSITION */
-        /* ================================= */
 
         .works-subheadings {
             position: absolute;
@@ -302,22 +269,15 @@
         }
 
 
-        /* ================================= */
         /* SHARED CV AND WORKS FORMATTING */
-        /* ================================= */
-
-        /* MAIN CONTENT CONTAINERS */
 
         .works-menu-content,
         .cv-menu-content {
             display: flex;
             flex-direction: column;
 
-            gap: 0px;
+            gap: 0;
         }
-
-
-        /* INDIVIDUAL GROUPS */
 
         .works-group,
         .cv-group {
@@ -326,9 +286,7 @@
         }
 
 
-        /* ================================= */
         /* SHARED SUBHEADING STYLING */
-        /* ================================= */
 
         .works-subheadings h1,
         .cv h2 {
@@ -347,9 +305,7 @@
         }
 
 
-        /* ================================= */
         /* SHARED SUB-SUBHEADING CONTAINERS */
-        /* ================================= */
 
         .works-sub-subheadings,
         .cv-sub-subheadings {
@@ -362,9 +318,7 @@
         }
 
 
-        /* ================================= */
-        /* WORKS SUB-SUBHEADING STYLING */
-        /* ================================= */
+        /* WORKS SUB-SUBHEADINGS */
 
         .works-sub-subheadings h2 {
             font-family: officecode;
@@ -376,16 +330,16 @@
             line-height: 1;
 
             margin: 0;
+
+            cursor: url(/cursors/heart.cur), auto;
         }
 
 
-        /* ================================= */
-        /* CV SUB-SUBHEADING STYLING */
-        /* ================================= */
+        /* CV SUB-SUBHEADINGS */
 
         .cv-sub-subheadings p {
             font-family: officecode;
-            font-size: 12px;
+            font-size: 14px;
             font-weight: 100;
             color: black;
 
@@ -395,18 +349,12 @@
         }
 
 
-        /* WORKS CURSOR */
+        /* WORKS LINKS */
 
-        .works-sub-subheadings h2 {
-            cursor: url(/cursors/heart.cur), auto;
+        .works-sub-subheadings a {
+            text-decoration: none;
+            color: black;
         }
-
-          .works-sub-subheadings a {
-           text-decoration: none;
-           color: #000000;
-        }
-
-        /* SUB-SUBHEADING HOVER */
 
         .works-sub-subheadings a:hover {
             color: #ff00e1;
@@ -421,9 +369,7 @@
         }
 
 
-        /* ================================= */
         /* CV DOWNLOAD LINK */
-        /* ================================= */
 
         .cv a {
             color: black;
@@ -440,16 +386,14 @@
             display: inline-block;
 
             font-family: officecode;
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 100;
 
-            margin-top: 0px;
+            margin-top: 0;
         }
 
 
-        /* ================================= */
-        /* WORKS MENU TOGGLE BUTTONS */
-        /* ================================= */
+        /* DESKTOP WORKS TOGGLE BUTTONS */
 
         .works-toggle {
             background: none;
@@ -466,38 +410,21 @@
 
             width: fit-content;
 
-            text-align: right;
-
             cursor: url(/cursors/heart.cur), auto;
         }
-
-
-        /* TOGGLE HOVER */
 
         .works-toggle:hover {
             color: #ff00e1;
         }
 
-
-        /* EXPAND BUTTON */
-
         .works-expand {
             display: none;
         }
 
-
-        /* COLLAPSE BUTTON */
-
         .works-collapse {
             align-self: flex-start;
-
             margin-top: 4px;
         }
-
-
-        /* ================================= */
-        /* COLLAPSED WORKS MENU */
-        /* ================================= */
 
         .works-subheadings.collapsed .works-menu-content {
             display: none;
@@ -505,6 +432,11 @@
 
         .works-subheadings.collapsed .works-expand {
             display: block;
+        }
+
+        .navigation-row:has(.works-subheadings.collapsed)
+        .works-heading h1 {
+            text-decoration: none;
         }
 
 
@@ -528,23 +460,26 @@
 
 
         /* ================================= */
-        /* HERO IMAGE / MANUAL SLIDESHOW */
+        /* HERO IMAGE — CENTRED */
         /* ================================= */
 
         .hero-image {
             position: relative;
 
-            width: 100%;
+            align-self: center;
+
+            width: fit-content;
+            max-width: 100%;
         }
-
-
-        /* HERO IMAGE STYLING */
 
         .hero-image img {
             display: block;
 
-            width: 100%;
+            width: auto;
             height: auto;
+
+            max-width: var(--gallery-width);
+            max-height: calc(100dvh - 150px);
 
             object-fit: contain;
             object-position: top left;
@@ -597,9 +532,6 @@
             cursor: url(/cursors/heart.cur), auto;
         }
 
-
-        /* ARROW HOVER */
-
         .slideshow-arrow:hover {
             color: #ff00e1;
         }
@@ -623,9 +555,7 @@
         }
 
 
-        /* ================================= */
         /* CONTACT POSITION */
-        /* ================================= */
 
         .contact-container {
             position: relative;
@@ -646,50 +576,44 @@
 
         .contact-heading:hover h1 {
             color: #ff00e1;
-
-            cursor: url(/cursors/heart.cur), auto;
         }
 
         .contact-heading.active h1 {
             text-decoration: underline;
             text-decoration-color: #ff00e1;
-
-            cursor: url(/cursors/heart.cur), auto;
         }
 
 
-        /* ================================= */
         /* CONTACT LINKS PANEL */
-        /* ================================= */
 
-    /* CONTACT LINKS PANEL */
+        .contact-panel {
+            display: none;
+            position: fixed;
 
-.contact-panel {
-    display: none;
-    position: fixed;
+            top: 8px;
+            right: 8px;
 
-    bottom: 8px;
-    left: 8px;
+            width: auto;
 
-    width: var(--gallery-width);
+            flex-direction: row;
+            justify-content: flex-end;
+            align-items: center;
 
-    flex-direction: row;
-    justify-content: flex-end;
-    align-items: center;
+            gap: 16px;
 
-    gap: 16px;
+            font-family: officecode;
+            font-size: 16px;
 
-    font-family: officecode;
-    font-size: 16px;
+            white-space: nowrap;
 
-    white-space: nowrap;
+            z-index: 200;
+        }
 
-    z-index: 200;
-}
+        .contact-panel.active {
+            display: flex;
+        }
 
-.contact-panel.active {
-    display: flex;
-}
+
         /* CONTACT LINK STYLING */
 
         .contact-panel a {
@@ -703,528 +627,485 @@
             text-decoration: underline;
             text-decoration-color: blue;
             text-decoration-thickness: 1px;
-
-            cursor: url(/cursors/heart.cur), auto;
         }
 
-/* ================================= */
-/* MOBILE / PHONE LAYOUT */
-/* ================================= */
 
-@media screen and (max-width: 768px) {
+        /* ================================= */
+        /* MOBILE / PHONE LAYOUT */
+        /* ================================= */
 
+        @media screen and (max-width: 768px) {
 
-    /* GENERAL */
 
-    body {
-        cursor: auto;
-    }
+            /* GENERAL */
 
+            body {
+                cursor: auto;
+            }
 
-    /* HEADER */
 
-    .header {
-        width: 100%;
-        padding: 8px;
-    }
+            /* HEADER */
 
+            .header {
+                width: 100%;
+                padding: 8px;
+            }
 
-    /* ================================= */
-    /* MAIN MOBILE GRID */
-    /* ================================= */
 
-    .namemark-container {
-        --gallery-width: calc(100vw - 16px);
+            /* MAIN MOBILE GRID */
 
-        position: relative;
+            .namemark-container {
+                --gallery-width: calc(100vw - 16px);
 
-        width: var(--gallery-width);
+                position: relative;
 
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+                width: var(--gallery-width);
 
-        align-items: start;
-        row-gap: 8px;
+                display: grid;
+                grid-template-columns:
+                    minmax(0, 1fr) minmax(0, 1fr);
 
-        padding-bottom: 65px;
-    }
+                align-items: start;
+                row-gap: 8px;
 
+                padding-bottom: 65px;
+            }
 
-    /* ================================= */
-    /* SEPARATE HEADER ELEMENTS */
-    /* ================================= */
 
-    .name-contact-row,
-    .navigation-row {
-        display: contents;
-    }
+            /* SEPARATE HEADER ELEMENTS */
 
+            .name-contact-row,
+            .navigation-row {
+                display: contents;
+            }
 
-    /* ================================= */
-    /* NAMEMARK — TOP LEFT */
-    /* ================================= */
 
-    .namemark {
-        grid-column: 1;
-        grid-row: 1;
+            /* NAMEMARK — TOP LEFT */
 
-        justify-self: start;
-    }
+            .namemark {
+                position: relative;
 
-    .namemark h1 {
-        font-family: ocbold;
-        font-size: 16px;
-        font-weight: normal;
+                grid-column: 1;
+                grid-row: 1;
 
-        color: black;
+                justify-self: start;
+            }
 
-        cursor: auto;
-    }
+            .namemark h1 {
+                font-family: ocbold;
+                font-size: 16px;
+                font-weight: normal;
 
-    .namemark:hover h1,
-    .namemark:active h1 {
-        color: black;
-    }
+                color: black;
+                cursor: auto;
+            }
 
 
-    /* ================================= */
-    /* CONTACT BUTTON — TOP RIGHT */
-    /* ================================= */
+            /* NAMEMARK HOVER */
 
-    .contact-container {
-        grid-column: 2;
-        grid-row: 1;
+            .namemark:hover > h1 {
+                opacity: 0;
+            }
 
-        justify-self: end;
+            .namemark-subheadings {
+                display: none;
+                position: absolute;
 
-        position: relative;
-    }
+                top: 0;
+                left: 0;
+                bottom: auto;
+                right: auto;
 
+                flex-direction: row;
+                align-items: center;
 
-    /* ================================= */
-    /* WORKS BUTTON — SECOND ROW LEFT */
-    /* ================================= */
+                gap: 8px;
 
-    .works-container {
-        grid-column: 1;
-        grid-row: 2;
+                white-space: nowrap;
+                pointer-events: none;
 
-        justify-self: start;
+                z-index: 200;
+            }
 
-        padding-right: 32px;
-    }
+            .namemark-subheadings h1 {
+                font-family: ocbold;
+                font-size: 16px;
+                font-weight: normal;
+                color: #ff00e1;
 
+                margin: 0;
+            }
 
-    /* ================================= */
-    /* CV BUTTON — SECOND ROW RIGHT */
-    /* ================================= */
+            .namemark:hover + .namemark-subheadings {
+                display: flex;
+            }
 
-    .cv-container {
-        grid-column: 2;
-        grid-row: 2;
 
-        justify-self: end;
-    }
+            /* CONTACT BUTTON — TOP RIGHT */
 
+            .contact-container {
+                grid-column: 2;
+                grid-row: 1;
 
-    /* ================================= */
-    /* WORKS AND CV CONTENT */
-    /* ================================= */
+                justify-self: end;
 
-    .works-subheadings,
-    .cv {
-        position: static;
+                position: relative;
 
-        grid-column: 1 / -1;
-        grid-row: 3;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+            }
 
-        width: 100%;
 
-        margin: 0;
-        padding: 0;
+            /* CONTACT LINKS — BELOW BUTTON */
 
-        box-sizing: border-box;
-    }
+            .contact-panel {
+                display: none;
+                position: static;
 
+                width: auto;
 
-    /* ================================= */
-    /* WORKS MENU */
-    /* ================================= */
+                flex-direction: row;
+                align-items: center;
+                justify-content: flex-end;
 
-    .works-subheadings {
-        display: flex;
-        flex-direction: column;
+                gap: 4px;
+                margin-top: 8px;
+                padding: 0;
 
-        gap: 8px;
-    }
+                font-family: officecode;
+                font-size: 16px;
 
-    .works-menu-content {
-        display: flex;
-        flex-direction: column;
-    }
+                background-color: transparent;
+            }
 
+            .contact-panel.active {
+                display: flex;
+            }
 
-    /* WORKS HEADINGS */
 
-    .works-subheadings h1 {
-        font-size: 16px;
-        text-align: left;
-    }
+            /* WORKS BUTTON — SECOND ROW LEFT */
 
+            .works-container {
+                grid-column: 1;
+                grid-row: 2;
 
-    /* WORKS TITLES */
+                justify-self: start;
+            }
 
-    .works-sub-subheadings h2 {
-        font-size: 14px;
-        line-height: 1.2;
 
-        text-align: left;
-    }
+            /* CV BUTTON — SECOND ROW RIGHT */
 
+            .cv-container {
+                grid-column: 2;
+                grid-row: 2;
 
-    /* ================================= */
-    /* WORKS EXPAND AND COLLAPSE BUTTONS */
-    /* ================================= */
+                justify-self: end;
+            }
 
-    .works-toggle {
-        font-size: 16px;
-    }
 
-    .works-expand,
-    .works-collapse {
-        position: absolute;
+            /* WORKS AND CV CONTENT POSITION */
 
-        grid-column: 1;
-        grid-row: 2;
+            .works-subheadings,
+            .cv {
+                position: static;
 
-        top: 0;
-        left: 80px;
-        right: auto;
+                grid-column: 1 / -1;
+                grid-row: 3;
 
-        margin: 0;
-        padding: 0;
+                width: 100%;
 
-        width: fit-content;
-    }
+                margin: 0;
+                padding: 0;
 
+                box-sizing: border-box;
 
-    /* COLLAPSED WORKS MENU */
+                text-align: left;
+            }
 
-    .works-subheadings.collapsed {
-        display: contents;
-    }
 
-    .works-subheadings.collapsed .works-menu-content {
-        display: none;
-    }
+            /* WORKS MENU */
 
-    .works-subheadings.collapsed .works-expand {
-        display: block;
-    }
+            .works-subheadings {
+                display: none;
 
+                flex-direction: column;
 
-    /* ================================= */
-    /* CV STYLING */
-    /* ================================= */
+                gap: 8px;
+            }
 
-    .cv h2 {
-        font-size: 16px;
-        text-align: right;
-    }
+            .works-menu-content {
+                display: flex;
+                flex-direction: column;
+            }
 
-    .cv-sub-subheadings p {
-        font-size: 12px;
-        line-height: 1.3;
+            .works-subheadings h1 {
+                font-size: 16px;
+                text-align: left;
+            }
 
-        text-align: right;
-    }
+            .works-sub-subheadings h2 {
+                font-size: 14px;
+                line-height: 1.2;
+                text-align: left;
+            }
 
-    .cv-download {
-        align-self: flex-end;
-        text-align: right;
-    }
 
+            /* REMOVE + AND - BUTTONS ON MOBILE */
 
-    /* ================================= */
-    /* FULL WIDTH PROJECT GALLERY */
-    /* ================================= */
+            .works-toggle,
+            .works-expand,
+            .works-collapse,
+            .works-subheadings.collapsed .works-expand {
+                display: none !important;
+            }
 
-    .project-gallery {
-        grid-column: 1 / -1;
-        grid-row: 3;
 
-        width: 100vw;
+            /* COLLAPSIBLE WORKS MENU */
 
-        margin-top: 0;
-        margin-left: -8px;
+            .navigation-row .works-subheadings.collapsed {
+                display: none !important;
+            }
 
-        gap: 8px;
-    }
+            .navigation-row:not(.cv-open)
+            .works-subheadings:not(.collapsed) {
+                display: flex;
+            }
 
+            .navigation-row.cv-open .works-subheadings {
+                display: none;
+            }
 
-    /* HERO IMAGE */
 
-    .hero-image {
-        width: 100%;
-    }
+            /* CV STYLING — LEFT ALIGNED */
 
-    .hero-image img {
-        display: block;
+            .cv {
+                display: none;
+                text-align: left;
+            }
 
-        width: 100%;
-        height: auto;
+            .cv-menu-content {
+                display: flex;
+                flex-direction: column;
+                align-items: stretch;
+            }
 
-        object-fit: contain;
-    }
+            .cv h2 {
+                font-size: 16px;
+                text-align: left;
+            }
 
+            .cv-sub-subheadings p {
+                font-size: 14px;
+                line-height: 1.3;
+                text-align: left;
+            }
 
-    /* ================================= */
-    /* SLIDESHOW NAVIGATION */
-    /* ================================= */
+            .cv-download {
+                align-self: flex-start;
+                text-align: left;
+            }
 
-    .slideshow-navigation {
-        bottom: 8px;
 
-        padding: 0 8px;
-    }
+            /* CV VISIBILITY */
 
-    .slideshow-arrow {
-        font-size: 18px;
-    }
+            .navigation-row:not(.cv-open) .cv {
+                display: none;
+            }
 
+            .navigation-row.cv-open .cv {
+                display: block;
+            }
 
-    /* ================================= */
-    /* PROJECT CAPTION */
-    /* ================================= */
 
-    .project-caption {
-        padding: 4px 8px 0 8px;
+            /* FULL WIDTH PROJECT GALLERY */
 
-        font-size: 14px;
-        line-height: 1.2;
-    }
+            .project-gallery {
+                grid-column: 1 / -1;
+                grid-row: 3;
 
+                width: 100vw;
 
-    /* ================================= */
-    /* PERMANENT ARTIST INFORMATION */
-    /* ================================= */
+                margin-top: 0;
+                margin-left: -8px;
 
-    .namemark-subheadings {
-        display: flex;
-        position: fixed;
+                gap: 8px;
+            }
 
-        bottom: 8px;
-        left: 8px;
-        right: auto;
 
-        flex-direction: row;
-        justify-content: flex-start;
-        align-items: center;
+            /* ================================= */
+            /* HERO IMAGE — CENTRED */
+            /* ================================= */
 
-        gap: 8px;
+            .hero-image {
+                width: fit-content;
 
-        white-space: nowrap;
+                align-self: center;
 
-        z-index: 200;
-    }
+                max-width: 100vw;
+            }
 
-    .namemark-subheadings h1 {
-        font-family: ocbold;
-        font-size: 16px;
-        font-weight: normal;
+            .hero-image img {
+                display: block;
 
-            color: #ff00e1;
-    
-        line-height: 1.2;
-        margin: 0;
-    }
+                width: auto;
+                height: auto;
 
+                max-width: 100vw;
+                max-height: calc(100dvh - 150px);
 
-    /* ================================= */
-    /* CONTACT LINKS — BOTTOM RIGHT */
-    /* ================================= */
+                object-fit: contain;
+                object-position: top left;
+            }
 
-    .contact-panel {
-        position: fixed;
 
-        bottom: 8px;
-        right: 8px;
-        left: auto;
+            /* REDUCE IMAGE HEIGHT WHEN CONTACT IS OPEN */
 
-        width: auto;
+            .namemark-container:has(.contact-panel.active)
+            .hero-image img {
+                max-height: calc(100dvh - 180px);
+            }
 
-        flex-direction: column;
-        justify-content: flex-end;
-        align-items: flex-end;
 
-        gap: 4px;
+            /* SLIDESHOW NAVIGATION */
 
-        padding: 0;
+            .slideshow-navigation {
+                bottom: 8px;
+                padding: 0 8px;
+            }
 
-        font-family: officecode;
-        font-size: 16px;
+            .slideshow-arrow {
+                font-size: 18px;
+            }
 
-        background-color: transparent;
 
-        z-index: 200;
-    }
+            /* PROJECT CAPTION — FIXED TO BOTTOM */
 
-    .contact-panel.active {
-        display: flex;
-    }
+            .project-caption {
+                position: fixed;
 
+                bottom: 8px;
+                left: 8px;
+                right: 8px;
 
-    /* ================================= */
-    /* HIDE VERTICAL IMAGE STRIP */
-    /* ================================= */
+                padding: 0;
+                margin: 0;
 
-    .image-strip {
-        display: none;
-    }
+                font-family: officecode;
+                font-size: 14px;
+                line-height: 1.2;
 
+                text-align: left;
+                color: black;
 
-    /* ================================= */
-    /* CV AND WORKS VISIBILITY */
-    /* ================================= */
+                z-index: 100;
+            }
 
-    .navigation-row:not(.cv-open) .cv {
-        display: none;
-    }
 
+            /* HIDE VERTICAL IMAGE STRIP */
 
-    /* SHOW WORKS WHEN EXPANDED */
+            .image-strip {
+                display: none;
+            }
 
-    .navigation-row:not(.cv-open)
-    .works-subheadings:not(.collapsed) {
-        display: flex;
-    }
 
+            /* HIDE GALLERY WHEN CV IS OPEN */
 
-    /* KEEP EXPAND BUTTON WHEN COLLAPSED */
+            .namemark-container:has(
+                .navigation-row.cv-open
+            ) .project-gallery {
+                display: none;
+            }
 
-    .navigation-row:not(.cv-open)
-    .works-subheadings.collapsed {
-        display: contents;
-    }
 
+            /* HIDE GALLERY WHEN WORKS IS OPEN */
 
-    /* SHOW CV WHEN SELECTED */
+            .namemark-container:has(
+                .navigation-row:not(.cv-open)
+                .works-subheadings:not(.collapsed)
+            ) .project-gallery {
+                display: none;
+            }
 
-    .navigation-row.cv-open .cv {
-        display: block;
-    }
 
+            /* RESTORE GALLERY WHEN BOTH ARE CLOSED */
 
-    /* HIDE WORKS WHEN CV IS SELECTED */
+            .namemark-container:has(
+                .navigation-row:not(.cv-open)
+                .works-subheadings.collapsed
+            ) .project-gallery {
+                display: flex;
+            }
 
-    .navigation-row.cv-open .works-subheadings {
-        display: none;
-    }
 
+            /* WORKS ACTIVE BUTTON STYLING */
 
-    /* ================================= */
-    /* REPLACE IMAGE WITH CV OR WORKS */
-    /* ================================= */
+            .navigation-row .works-heading h1 {
+                text-decoration: none;
+            }
 
-    .namemark-container:has(
-        .navigation-row.cv-open
-    ) .project-gallery {
-        display: none;
-    }
+            .navigation-row:not(.cv-open):has(
+                .works-subheadings:not(.collapsed)
+            ) .works-heading h1 {
+                text-decoration: underline;
+                text-decoration-color: #ff00e1;
+                text-decoration-thickness: 1px;
+            }
 
-    .namemark-container:has(
-        .navigation-row:not(.cv-open)
-        .works-subheadings:not(.collapsed)
-    ) .project-gallery {
-        display: none;
-    }
+            .navigation-row.cv-open .works-heading h1 {
+                text-decoration: none;
+            }
 
 
-    /* ================================= */
-    /* MOBILE ACTIVE BUTTON STYLING */
-    /* ================================= */
+            /* CV ACTIVE BUTTON STYLING */
 
-    .navigation-row:not(.cv-open) .works-heading h1 {
-        text-decoration: underline;
-        text-decoration-color: #ff00e1;
-        text-decoration-thickness: 1px;
-    }
+            .cv-heading.active h1 {
+                text-decoration: underline;
+                text-decoration-color: #ff00e1;
+                text-decoration-thickness: 1px;
+            }
 
-    .navigation-row.cv-open .works-heading h1 {
-        text-decoration: none;
-    }
 
-}
+            /* CONTACT ACTIVE BUTTON STYLING */
 
+            .contact-heading.active h1 {
+                text-decoration: underline;
+                text-decoration-color: #ff00e1;
+                text-decoration-thickness: 1px;
+            }
 
-/* ================================= */
-/* TOUCHSCREEN NAVIGATION */
-/* ================================= */
+        }
 
-@media (hover: none) {
 
+        /* TOUCHSCREEN NAVIGATION */
 
-    /* DISABLE CV HOVER ACTIVATION */
+        @media (hover: none) {
 
-    .navigation-row:not(.cv-open):has(.cv-heading:hover) .cv {
-        display: none;
-    }
+            .navigation-row:not(.cv-open) .cv {
+                display: none;
+            }
 
+            .navigation-row.cv-open .cv {
+                display: block;
+            }
 
-    /* RESTORE EXPANDED WORKS */
+            .navigation-row.cv-open .works-subheadings {
+                display: none;
+            }
 
-    .navigation-row:not(.cv-open):has(.cv-heading:hover)
-    .works-subheadings:not(.collapsed) {
-        display: flex;
-    }
+        }
 
 
-    /* RESTORE WORKS UNDERLINE */
+        /* EXTRA SMALL PHONE SCREENS */
 
-    .navigation-row:not(.cv-open):has(.cv-heading:hover)
-    .works-heading h1 {
-        text-decoration: underline;
-        text-decoration-color: #ff00e1;
-        text-decoration-thickness: 1px;
-    }
+        @media screen and (max-width: 380px) {
 
+            .namemark-subheadings {
+                gap: 8px;
+            }
 
-    /* SHOW CV ON TAP */
+        }
 
-    .navigation-row.cv-open .cv {
-        display: block;
-    }
-
-
-    /* HIDE WORKS WHEN CV IS ACTIVE */
-
-    .navigation-row.cv-open .works-subheadings {
-        display: none;
-    }
-
-
-    /* REMOVE WORKS ACTIVE UNDERLINE */
-
-    .navigation-row.cv-open .works-heading h1 {
-        text-decoration: none;
-    }
-
-}
-
-
-/* ================================= */
-/* EXTRA SMALL PHONE SCREENS */
-/* ================================= */
-
-@media screen and (max-width: 380px) {
-
-    .namemark-subheadings {
-        gap: 8px;
-    }
-
-
-
-}
     </style>
 
 </head>
@@ -1232,25 +1113,14 @@
 
 <body>
 
-
-    <!-- HEADER -->
-
     <header class="header">
-
-
-        <!-- NAMEMARK VERTICAL COLUMN -->
 
         <div class="namemark-container">
 
 
-            <!-- ================================= -->
             <!-- NAME AND CONTACT ROW -->
-            <!-- ================================= -->
 
             <div class="name-contact-row">
-
-
-                <!-- NAME -->
 
                 <div class="namemark">
 
@@ -1265,7 +1135,6 @@
 
                     <h1>Artist</h1>
                     <h1>Naarm/Melbourne</h1>
-                    
 
                 </div>
 
@@ -1274,7 +1143,8 @@
 
                 <div class="contact-container">
 
-                    <div class="contact-heading" onclick="toggleContact()">
+                    <div class="contact-heading"
+                         onclick="toggleContact()">
 
                         <h1>[contact]</h1>
 
@@ -1286,35 +1156,27 @@
                     <div class="contact-panel" id="contactPanel">
 
                         <a href="mailto:lmhogan12@gmail.com">
-
                             [email]
-
                         </a>
 
-                        <a
-                            href="https://www.instagram.com/l1lyhogan/?hl=en"
-                            target="_blank">
-
+                        <a href="https://www.instagram.com/l1lyhogan/?hl=en"
+                           target="_blank">
                             [instagram]
-
                         </a>
 
                     </div>
 
                 </div>
 
-
             </div>
 
 
-            <!-- ================================= -->
             <!-- NAVIGATION ROW -->
-            <!-- ================================= -->
 
             <div class="navigation-row">
 
 
-                <!-- CV HOVER AND CLICK BUTTON -->
+                <!-- CV BUTTON -->
 
                 <div class="cv-container">
 
@@ -1331,7 +1193,16 @@
 
                 <div class="works-container">
 
-                    <div class="works-heading" onclick="showWorks()">
+                    <div class="works-heading"
+                         onclick="showWorks()"
+                         role="button"
+                         tabindex="0"
+                         aria-controls="worksSubheadings"
+                         aria-expanded="true"
+                         onkeydown="if (event.key === 'Enter' || event.key === ' ') {
+                             event.preventDefault();
+                             showWorks();
+                         }">
 
                         <h1>[works]</h1>
 
@@ -1340,9 +1211,7 @@
                 </div>
 
 
-                <!-- ================================= -->
                 <!-- CV TEXT -->
-                <!-- ================================= -->
 
                 <div class="cv" id="CvText">
 
@@ -1415,7 +1284,8 @@
 
                                 <p>
                                     Victorian College of the Arts Graduate Show,
-                                    2024, Victorian College of the Arts, Melbourne
+                                    2024, Victorian College of the Arts,
+                                    Melbourne
                                 </p>
 
                                 <p>
@@ -1426,7 +1296,8 @@
 
                                 <p>
                                     Victorian College of the Arts Graduate Show,
-                                    2026, Victorian College of the Arts, Melbourne
+                                    2026, Victorian College of the Arts,
+                                    Melbourne
                                 </p>
 
                             </div>
@@ -1489,29 +1360,25 @@
 
                         <!-- DOWNLOAD CV -->
 
-                        <a
-                            href="/documents/LilyHoganArtistCV2026.pdf"
-                            download
-                            class="cv-download">
+                        <a href="/documents/LilyHoganArtistCV2026.pdf"
+                           download
+                           class="cv-download">
 
                             [download cv]
 
                         </a>
-
 
                     </div>
 
                 </div>
 
 
-                <!-- ================================= -->
                 <!-- WORKS MENU -->
-                <!-- ================================= -->
 
                 <div class="works-subheadings" id="worksSubheadings">
 
 
-                    <!-- EXPAND BUTTON -->
+                    <!-- DESKTOP EXPAND BUTTON -->
 
                     <button
                         class="works-toggle works-expand"
@@ -1541,22 +1408,42 @@
 
                             <div class="works-sub-subheadings">
 
-                                  <h2><a href="../26.6.silvering/silvering.html">Silvering</a><i></i></h2>
+                                <h2>
+                                    <a href="../26.6.silvering/silvering.html">
+                                        Silvering
+                                    </a>
+                                </h2>
 
-                                <h2><a href="../26.5.sub/sub.html">Sub #1</a><i></i></h2>
+                                <h2>
+                                    <a href="../26.5.sub/sub.html">
+                                        Sub #1
+                                    </a>
+                                </h2>
 
-                                <h2 ><a href="../26.1.blinders/blinders.html"></a><i>Blinders</i></h2>
+                                <h2>
+                                    <a href="../26.1.blinders/blinders.html">
+                                        Blinders
+                                    </a>
+                                </h2>
 
-                                <h2 > <a href="../26.2.Blowup/blowup.html"><i>Blow up #1 & #2</i></a></h2>
+                                <h2>
+                                    <a href="../26.2.Blowup/blowup.html">
+                                        <i>Blow up #1 &amp; #2</i>
+                                    </a>
+                                </h2>
 
-                                <h2><a href="../26.3.box/box.html"><i>Box (Ding)</i></a></h2>
+                                <h2>
+                                    <a href="../26.3.box/box.html">
+                                        <i>Box (Ding)</i>
+                                    </a>
+                                </h2>
 
                             </div>
 
                         </div>
 
 
-                              <!-- 2025 -->
+                        <!-- 2025 -->
 
                         <div class="works-group">
 
@@ -1566,7 +1453,11 @@
 
                             <div class="works-sub-subheadings">
 
-                                <h2><a href="../25.1.houseshow/hs.html">House Show</a></h2>
+                                <h2>
+                                    <a href="../25.1.houseshow/hs.html">
+                                        House Show
+                                    </a>
+                                </h2>
 
                             </div>
 
@@ -1583,13 +1474,27 @@
 
                             <div class="works-sub-subheadings">
 
-                                <h2><a href="../24.1.advicetoyounggirls/girls.html">advice to young girls</a></h2>
+                                <h2>
+                                    <a href="../24.1.advicetoyounggirls/girls.html">
+                                        advice to young girls
+                                    </a>
+                                </h2>
 
-                                <h2> <a href="../24.2.iwanttobenaked/naked.html">I want to be naked (i dont mean my body)</a></h2>
+                                <h2>
+                                    <a href="../24.2.iwanttobenaked/naked.html">
+                                        I want to be naked (i dont mean my body)
+                                    </a>
+                                </h2>
 
-                                <h2 class="active"><a href="../24.3.north78/north78.html">North 1978 and Untitled (Echo)</a></h2>
+                                <h2 class="active">
+                                    <i>North 1978 and Untitled (Echo)</i>
+                                </h2>
 
-                                <h2><a href="../24.4.revolution/revolution.html">WOULD YOU KILL ME IN THE COMMUNIST REVOLUTION?</a></h2>
+                                <h2>
+                                    <a href="../24.4.revolution/revolution.html">
+                                        WOULD YOU KILL ME IN THE COMMUNIST REVOLUTION?
+                                    </a>
+                                </h2>
 
                             </div>
 
@@ -1606,13 +1511,29 @@
 
                             <div class="works-sub-subheadings">
 
-                                <h2><a href="../writings/beatingadeadhorse.html">Beating a Dead Horse</a></h2>
+                                <h2>
+                                    <a href="../writings/beatingadeadhorse.html">
+                                        Beating a Dead Horse
+                                    </a>
+                                </h2>
 
-                                <h2><a href="../writings/helengarner.html">Helen Garner came into my work</a></h2>
+                                <h2>
+                                    <a href="../writings/helengarner.html">
+                                        Helen Garner came into my work
+                                    </a>
+                                </h2>
 
-                                <h2><a href="../writings/trivialpursuit.html">Trivial Pursuit</a></h2>
+                                <h2>
+                                    <a href="../writings/trivialpursuit.html">
+                                        Trivial Pursuit
+                                    </a>
+                                </h2>
 
-                                <h2><a href="../writings/fionaandagnes.html">For Fiona & Agnes Martin: 'I Love the Whole World'</a></h2>
+                                <h2>
+                                    <a href="../writings/fionaandagnes.html">
+                                        For Fiona &amp; Agnes Martin:
+                                        'I Love the Whole World'
+                                    </a>
                                 </h2>
 
                             </div>
@@ -1620,7 +1541,7 @@
                         </div>
 
 
-                        <!-- COLLAPSE BUTTON -->
+                        <!-- DESKTOP COLLAPSE BUTTON -->
 
                         <button
                             class="works-toggle works-collapse"
@@ -1634,11 +1555,9 @@
 
                         </button>
 
-
                     </div>
 
                 </div>
-
 
             </div>
 
@@ -1656,8 +1575,8 @@
 
                     <img
                         id="heroImage"
-                        src="/site/selectedworks/24.3.north78/24.3.1.jpg"
-                        alt="Silvering">
+                        src="./24.3.1.jpg"
+                        alt="North 1978 and Untitled (Echo)">
 
 
                     <!-- SLIDESHOW NAVIGATION -->
@@ -1688,30 +1607,26 @@
 
                         </button>
 
-
                     </div>
-
 
                 </div>
 
 
                 <!-- PROJECT CAPTION -->
 
-        
-
-
-
                 <div class="project-caption">
 
-                    <i>North 1978</i>, 2024 <br> C-type prints on dibond, 2170 x 2170 mm. <br>
+                    <i>North 1978</i>, 2024 <br>
+                    C-type prints on dibond, 2170 x 2170 mm. <br>
 
-                    <i>Untitled (Echo)</i>, 2024 <br> ply, acrylic, steel, 2100 x 2100 mm.
+                    <i>Untitled (Echo)</i>, 2024 <br>
+                    ply, acrylic, steel, 2100 x 2100 mm.
 
                 </div>
-                
 
             </div>
 
+        </div>
 
     </header>
 
@@ -1727,15 +1642,14 @@
 
         const projectImages = [
 
-            "/site/selectedworks/24.3.north78/24.3.1.jpg",
-
-            "/site/selectedworks/24.3.north78/24.3.4.jpg",
-            "/site/selectedworks/24.3.north78/24.3.5.jpg",
-            "/site/selectedworks/24.3.north78/24.3.7.jpg",
-            "/site/selectedworks/24.3.north78/24.3.8.jpg",
-             "/site/selectedworks/24.3.north78/24.3.9.jpg",
-               "/site/selectedworks/24.3.north78/24.3.11.jpg",
-                "/site/selectedworks/24.3.north78/24.3.12.jpg"
+            "./24.3.1.jpg",
+            "./24.3.4.jpg",
+            "./24.3.5.jpg",
+            "./24.3.7.jpg",
+            "./24.3.8.jpg",
+            "./24.3.9.jpg",
+            "./24.3.11.jpg",
+            "./24.3.12.jpg"
 
         ];
 
@@ -1760,22 +1674,19 @@
         });
 
 
-        /* ================================= */
         /* MANUAL SLIDESHOW */
-        /* ================================= */
 
         function changeImage(direction) {
 
             currentImage =
-
                 (currentImage + direction + projectImages.length)
-
                 % projectImages.length;
-
 
             heroImage.src = projectImages[currentImage];
 
-            heroImage.alt = "Silvering — image " + (currentImage + 1);
+            heroImage.alt =
+                "North 1978 and Untitled (Echo) — image "
+                + (currentImage + 1);
 
         }
 
@@ -1803,88 +1714,132 @@
         });
 
 
-        /* ================================= */
-        /* TOGGLE ENTIRE WORKS MENU */
-        /* ================================= */
+        /* SYNC WORKS MENU STATE */
+
+        function syncWorksState() {
+
+            const works =
+                document.getElementById("worksSubheadings");
+
+            const navigation =
+                document.querySelector(".navigation-row");
+
+            const expanded =
+                !works.classList.contains("collapsed") &&
+                !navigation.classList.contains("cv-open");
+
+            document.querySelector(".works-heading")
+                .setAttribute("aria-expanded", String(expanded));
+
+            document.getElementById("worksExpand")
+                .setAttribute("aria-expanded", String(expanded));
+
+            document.getElementById("worksCollapse")
+                .setAttribute("aria-expanded", String(expanded));
+
+        }
+
+
+        /* DESKTOP WORKS TOGGLE */
 
         function toggleWorks() {
 
-            const works = document.getElementById("worksSubheadings");
+            const works =
+                document.getElementById("worksSubheadings");
 
-            const expand = document.getElementById("worksExpand");
+            const isCollapsed =
+                works.classList.toggle("collapsed");
 
-            const collapse = document.getElementById("worksCollapse");
+            syncWorksState();
 
+            if (!window.matchMedia("(max-width: 768px)").matches) {
 
-            const isCollapsed = works.classList.toggle("collapsed");
-
-
-            expand.setAttribute("aria-expanded", !isCollapsed);
-
-            collapse.setAttribute("aria-expanded", !isCollapsed);
-
-
-            if (isCollapsed) {
-
-                expand.focus({ preventScroll: true });
-
-            } else {
-
-                collapse.focus({ preventScroll: true });
+                document.getElementById(
+                    isCollapsed ? "worksExpand" : "worksCollapse"
+                ).focus({ preventScroll: true });
 
             }
 
         }
 
 
-        /* ================================= */
         /* TOGGLE CV */
-        /* ================================= */
 
         function toggleCV() {
 
-            const navigation = document.querySelector(".navigation-row");
+            const navigation =
+                document.querySelector(".navigation-row");
 
-            const cvButton = document.querySelector(".cv-heading");
+            const cvButton =
+                document.querySelector(".cv-heading");
 
-
-            const isOpen = navigation.classList.toggle("cv-open");
-
+            const isOpen =
+                navigation.classList.toggle("cv-open");
 
             cvButton.classList.toggle("active", isOpen);
 
+            syncWorksState();
+
         }
 
 
-        /* ================================= */
-        /* RETURN TO WORKS */
-        /* ================================= */
+        /* TOGGLE WORKS */
 
         function showWorks() {
 
-            const navigation = document.querySelector(".navigation-row");
+            const navigation =
+                document.querySelector(".navigation-row");
 
-            const cvButton = document.querySelector(".cv-heading");
+            const cvButton =
+                document.querySelector(".cv-heading");
 
+            const works =
+                document.getElementById("worksSubheadings");
+
+            const wasCVOpen =
+                navigation.classList.contains("cv-open");
 
             navigation.classList.remove("cv-open");
 
-
             cvButton.classList.remove("active");
+
+
+            /* MOBILE — OPEN AND CLOSE USING WORKS BUTTON */
+
+            if (window.matchMedia("(max-width: 768px)").matches) {
+
+                if (wasCVOpen) {
+
+                    works.classList.remove("collapsed");
+
+                } else {
+
+                    works.classList.toggle("collapsed");
+
+                }
+
+            } else {
+
+                /* DESKTOP — RETURN TO WORKS */
+
+                works.classList.remove("collapsed");
+
+            }
+
+            syncWorksState();
 
         }
 
 
-        /* ================================= */
         /* TOGGLE CONTACT */
-        /* ================================= */
 
         function toggleContact() {
 
-            const panel = document.getElementById("contactPanel");
+            const panel =
+                document.getElementById("contactPanel");
 
-            const button = document.querySelector(".contact-heading");
-
+            const button =
+                document.querySelector(".contact-heading");
 
             panel.classList.toggle("active");
 
@@ -1892,25 +1847,27 @@
 
         }
 
-        /* ================================= */
-/* COLLAPSE WORKS MENU ON MOBILE */
-/* ================================= */
 
-if (window.matchMedia("(max-width: 768px)").matches) {
+        /* COLLAPSE WORKS MENU ON MOBILE */
 
-    const works = document.getElementById("worksSubheadings");
-    const expand = document.getElementById("worksExpand");
-    const collapse = document.getElementById("worksCollapse");
+        const mobileLayout =
+            window.matchMedia("(max-width: 768px)");
 
-    works.classList.add("collapsed");
+        function applyLayout(event) {
 
-    expand.setAttribute("aria-expanded", "false");
-    collapse.setAttribute("aria-expanded", "false");
+            document.getElementById("worksSubheadings")
+                .classList.toggle("collapsed", event.matches);
 
-}
+            syncWorksState();
+
+        }
+
+        applyLayout(mobileLayout);
+
+        mobileLayout.addEventListener("change", applyLayout);
+
 
     </script>
-
 
 </body>
 
