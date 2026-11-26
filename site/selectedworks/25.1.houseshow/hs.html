@@ -36,9 +36,6 @@
             cursor: url(/cursors/starblack.cur), auto;
         }
 
-
-        /* HEADER */
-
         .header {
             display: flex;
             flex-direction: row;
@@ -432,7 +429,9 @@
         }
 
 
+        /* ================================= */
         /* PROJECT GALLERY */
+        /* ================================= */
 
         .project-gallery {
             display: flex;
@@ -449,35 +448,81 @@
         }
 
 
-        /* RANDOM IMAGE PLACEMENT */
+        /* ================================= */
+        /* HERO IMAGE — CENTRED */
+        /* ================================= */
 
-        .image-grid {
+        .hero-image {
             position: relative;
 
-            width: 100%;
-            height: 65vh;
+            align-self: center;
 
-            overflow: hidden;
-
-            --image-size: 140px;
+            width: fit-content;
+            max-width: 100%;
         }
 
-
-        /* RANDOM IMAGE STYLING */
-
-        .image-grid img {
-            position: absolute;
-
+        .hero-image img {
             display: block;
 
-            width: var(--image-size);
-            height: var(--image-size);
+            width: auto;
+            height: auto;
+
+            max-width: var(--gallery-width);
+            max-height: calc(100dvh - 150px);
 
             object-fit: contain;
+            object-position: top left;
 
             filter: drop-shadow(
                 2px 2px 4px rgba(0, 0, 0, 0.15)
             );
+        }
+
+
+        /* ================================= */
+        /* SLIDESHOW NAVIGATION */
+        /* ================================= */
+
+        .slideshow-navigation {
+            position: absolute;
+
+            bottom: 8px;
+            left: 0;
+
+            display: flex;
+            flex-direction: row;
+
+            justify-content: space-between;
+            align-items: center;
+
+            width: 100%;
+
+            padding: 0 8px;
+
+            box-sizing: border-box;
+
+            z-index: 10;
+        }
+
+
+        /* SLIDESHOW ARROWS */
+
+        .slideshow-arrow {
+            background: none;
+            border: none;
+
+            font-family: officecode;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+
+            padding: 0;
+
+            cursor: url(/cursors/heart.cur), auto;
+        }
+
+        .slideshow-arrow:hover {
+            color: #ff00e1;
         }
 
 
@@ -602,7 +647,6 @@
                     minmax(0, 1fr) minmax(0, 1fr);
 
                 align-items: start;
-
                 row-gap: 8px;
 
                 padding-bottom: 65px;
@@ -871,25 +915,48 @@
 
 
             /* ================================= */
-            /* MOBILE RANDOM IMAGE PLACEMENT */
+            /* MOBILE HERO IMAGE — CENTRED */
             /* ================================= */
 
-            .image-grid {
-                width: 100%;
+            .hero-image {
+                width: fit-content;
 
-                height: calc(100dvh - 120px);
+                align-self: center;
 
-                /* ADJUST MOBILE IMAGE SIZE HERE */
+                max-width: 100vw;
+            }
 
-                --image-size: 100px;
+            .hero-image img {
+                display: block;
+
+                width: auto;
+                height: auto;
+
+                max-width: 100vw;
+                max-height: calc(100dvh - 150px);
+
+                object-fit: contain;
+                object-position: top left;
             }
 
 
-            /* REDUCE GALLERY HEIGHT WHEN CONTACT IS OPEN */
+            /* REDUCE IMAGE HEIGHT WHEN CONTACT IS OPEN */
 
             .namemark-container:has(.contact-panel.active)
-            .image-grid {
-                height: calc(100dvh - 150px);
+            .hero-image img {
+                max-height: calc(100dvh - 180px);
+            }
+
+
+            /* MOBILE SLIDESHOW NAVIGATION */
+
+            .slideshow-navigation {
+                bottom: 8px;
+                padding: 0 8px;
+            }
+
+            .slideshow-arrow {
+                font-size: 18px;
             }
 
 
@@ -1307,9 +1374,7 @@
 
                         <div class="works-group">
 
-                            <h1 class="works-subheading">
-                                2026
-                            </h1>
+                            <h1 class="works-subheading">2026</h1>
 
                             <div class="works-sub-subheadings">
 
@@ -1352,9 +1417,7 @@
 
                         <div class="works-group">
 
-                            <h1 class="works-subheading">
-                                2025
-                            </h1>
+                            <h1 class="works-subheading">2025</h1>
 
                             <div class="works-sub-subheadings">
 
@@ -1373,9 +1436,7 @@
 
                         <div class="works-group">
 
-                            <h1 class="works-subheading">
-                                2024
-                            </h1>
+                            <h1 class="works-subheading">2024</h1>
 
                             <div class="works-sub-subheadings">
 
@@ -1412,9 +1473,7 @@
 
                         <div class="works-group">
 
-                            <h1 class="works-subheading">
-                                Writing
-                            </h1>
+                            <h1 class="works-subheading">Writing</h1>
 
                             <div class="works-sub-subheadings">
 
@@ -1469,14 +1528,54 @@
             </div>
 
 
+            <!-- ================================= -->
             <!-- PROJECT GALLERY -->
+            <!-- ================================= -->
 
             <div class="project-gallery">
 
 
-                <!-- RANDOM IMAGE CONTAINER -->
+                <!-- HERO IMAGE -->
 
-                <div class="image-grid" id="imageGrid"></div>
+                <div class="hero-image">
+
+                    <img
+                        id="heroImage"
+                        src="./000050.jpeg"
+                        alt="House Show">
+
+
+                    <!-- SLIDESHOW NAVIGATION -->
+
+                    <div class="slideshow-navigation">
+
+
+                        <!-- PREVIOUS IMAGE -->
+
+                        <button
+                            class="slideshow-arrow previous"
+                            onclick="changeImage(-1)"
+                            aria-label="Previous image">
+
+                            [←]
+
+                        </button>
+
+
+                        <!-- NEXT IMAGE -->
+
+                        <button
+                            class="slideshow-arrow next"
+                            onclick="changeImage(1)"
+                            aria-label="Next image">
+
+                            [→]
+
+                        </button>
+
+                    </div>
+
+                </div>
 
 
                 <!-- PROJECT CAPTION -->
@@ -1521,41 +1620,122 @@
             "./000063.jpeg",
             "./000064.jpeg",
             "./000065.jpeg",
-            "./000066.jpeg"
+            "./000066.jpeg", 
+            "./111.jpeg",
+"./112.jpeg",
+"./113.jpeg",
+"./114.jpeg",
+"./115.jpeg",
+"./116.jpeg",
+"./117.jpeg",
+"./118.jpeg",
+"./119.jpeg",
+"./1110.jpeg",
+"./1111.jpeg",
+"./1112.jpeg",
+"./1113.jpeg",
+"./1114.jpeg",
+"./1115.jpeg",
+"./1116.jpeg",
+"./1117.jpeg",
+"./1118.jpeg",
+"./1119.jpeg",
+"./1120.jpeg",
+"./1121.jpeg",
+"./1122.jpeg",
+"./1123.jpeg",
+"./1124.jpeg",
+"./1125.jpeg",
+"./1126.jpeg",
+"./1127.jpeg",
+"./1128.jpeg",
+"./1129.jpeg",
+"./1130.jpeg",
+"./1131.jpeg",
+"./2226.jpeg",
+"./2227.jpeg",
+"./2228.jpeg",
+"./2229.jpeg",
+"./22210.jpeg",
+"./22211.jpeg",
+"./22212.jpeg",
+"./22213.jpeg",
+"./22214.jpeg",
+"./22215.jpeg",
+"./22216.jpeg",
+"./22217.jpeg",
+"./22218.jpeg",
+"./22219.jpeg",
+"./22220.jpeg",
+"./22221.jpeg",
+"./22222.jpeg",
+"./22223.jpeg",
+"./22224.jpeg",
+"./22225.jpeg",
+"./22226.jpeg",
+"./22227.jpeg",
+"./22228.jpeg",
+"./22229.jpeg",
+"./22230.jpeg"
 
         ];
 
 
-        /* GENERATE RANDOM IMAGE PLACEMENT */
+        /* SLIDESHOW SETTINGS */
 
-        const imageGrid = document.getElementById("imageGrid");
+        let currentImage = 0;
 
-        projectImages.forEach((src, index) => {
+        const heroImage = document.getElementById("heroImage");
 
-            const img = document.createElement("img");
+
+        /* PRELOAD IMAGES */
+
+        const preloadedImages = projectImages.map(src => {
+
+            const img = new Image();
 
             img.src = src;
-            img.alt = "House Show — image " + (index + 1);
+
+            return img;
+
+        });
 
 
-            /* RANDOM HORIZONTAL AND VERTICAL POSITION */
+        /* MANUAL SLIDESHOW */
 
-            const randomX = Math.random();
-            const randomY = Math.random();
+        function changeImage(direction) {
+
+            currentImage =
+                (currentImage + direction + projectImages.length)
+                % projectImages.length;
+
+            heroImage.src = projectImages[currentImage];
+
+            heroImage.alt =
+                "House Show — image " + (currentImage + 1);
+
+        }
 
 
-            /* KEEP IMAGES WITHIN THE GALLERY AREA */
+        /* KEYBOARD ARROW CONTROLS */
 
-            img.style.left =
-                `calc(${randomX * 100}% - ${randomX} * var(--image-size))`;
+        document.addEventListener("keydown", (event) => {
 
-            img.style.top =
-                `calc(${randomY * 100}% - ${randomY} * var(--image-size))`;
+            if (event.key === "ArrowLeft") {
 
+                event.preventDefault();
 
-            /* ADD IMAGE TO GALLERY */
+                changeImage(-1);
 
-            imageGrid.appendChild(img);
+            }
+
+            if (event.key === "ArrowRight") {
+
+                event.preventDefault();
+
+                changeImage(1);
+
+            }
 
         });
 
